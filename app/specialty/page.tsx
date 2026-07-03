@@ -10,7 +10,7 @@ const specialtyServices = [
   {
     title: 'DIY Weddings',
     description:
-      'We empower couples to create their own wedding florals with expert guidance. Our DIY packages include pre-designed arrangements, step-by-step tutorials, and full support to bring your vision to life—at a fraction of traditional florist costs.',
+      "We empower couples to create their own wedding florals with expert guidance. Our DIY packages include pre-designed arrangements, step-by-step tutorials, and full support to bring your vision to life—at a fraction of traditional florist costs.",
     image: '/images/specialty/diy-wedding.jpg',
     cta: 'Learn About DIY',
     ctaLink: '/weddings',
@@ -19,7 +19,7 @@ const specialtyServices = [
   {
     title: 'Luxury Wedding Venues',
     description:
-      'We partner with Las Vegas's most prestigious venues to deliver sophisticated floral installations. From grand ballrooms to intimate garden settings, we create arrangements that complement your venue and elevate your celebration.',
+      "We partner with Las Vegas's most prestigious venues to deliver sophisticated floral installations. From grand ballrooms to intimate garden settings, we create arrangements that complement your venue and elevate your celebration.",
     image: '/images/specialty/luxury-venue.jpg',
     cta: 'Venue Arrangements',
     ctaLink: '/weddings',

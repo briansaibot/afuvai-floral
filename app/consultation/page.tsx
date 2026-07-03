@@ -66,7 +66,7 @@ export default function ConsultationPage() {
               {
                 step: '4',
                 title: 'Next Steps',
-                desc: 'We'll send a proposal and timeline to bring your idea to life',
+                desc: "We'll send a proposal and timeline to bring your idea to life",
               },
             ].map((item, idx) => (
               <div key={idx} className="text-center">
@@ -92,24 +92,24 @@ export default function ConsultationPage() {
           <div className="space-y-6">
             {[
               {
-                q: 'Is the consultation really free?',
-                a: 'Yes! We offer a complimentary 30-minute consultation to discuss your vision, budget, and ideas—no strings attached.',
+                q: "Is the consultation really free?",
+                a: "Yes! We offer a complimentary 30-minute consultation to discuss your vision, budget, and ideas—no strings attached.",
               },
               {
-                q: 'Can I do the consultation by Zoom?',
-                a: 'Absolutely. We offer both Zoom and in-person consultations for Las Vegas area clients. Choose what works best for you.',
+                q: "Can I do the consultation by Zoom?",
+                a: "Absolutely. We offer both Zoom and in-person consultations for Las Vegas area clients. Choose what works best for you.",
               },
               {
-                q: 'Do I need to have a specific idea for my event?',
-                a: 'Not at all. Come with inspiration, Pinterest boards, color preferences, or just a general idea. We'll help refine your vision together.',
+                q: "Do I need to have a specific idea for my event?",
+                a: "Not at all. Come with inspiration, Pinterest boards, color preferences, or just a general idea. We'll help refine your vision together.",
               },
               {
-                q: 'What if I need to reschedule?',
-                a: 'No problem. Just reply to your confirmation email at least 24 hours before your slot to reschedule.',
+                q: "What if I need to reschedule?",
+                a: "No problem. Just reply to your confirmation email at least 24 hours before your slot to reschedule.",
               },
               {
-                q: 'How far in advance should I book?',
-                a: 'For weddings, book 2-3 months ahead. For events and specialty services, 4-6 weeks is ideal. We can accommodate rush requests.',
+                q: "How far in advance should I book?",
+                a: "For weddings, book 2-3 months ahead. For events and specialty services, 4-6 weeks is ideal. We can accommodate rush requests.",
               },
             ].map((item, idx) => (
               <div key={idx} className="bg-white rounded-lg p-6 shadow-md">
