@@ -203,7 +203,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             </div>
 
             <p className="mt-4 text-center" style={{ fontSize: "0.78rem", color: MUTED }}>
-              Same-day delivery available · admin@afuvai.com
+              Same-day delivery available · hello@afuvai.com
             </p>
 
             {/* Paired product */}

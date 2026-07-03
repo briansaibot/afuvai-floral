@@ -1,95 +1,93 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { BORDER, CARD, GOLD, GOLD_L, INK, IVORY, MUTED, SAGE, serif, sans, WEDDING_ARCH, RECEPTION_TABLE, PARTY_IMG } from '@/lib/constants';
+import { SectionHead } from '@/app/components/SectionHead';
 
 export const metadata: Metadata = {
   title: 'Specialty Services | Afuvai Floral Society',
-  description: 'DIY wedding florals, luxury venue arrangements, and Strip property event flowers',
+  description: 'DIY wedding florals, luxury venue arrangements, and Strip property event flowers for Las Vegas celebrations.',
 };
 
 const specialtyServices = [
   {
     title: 'DIY Weddings',
     description:
-      "We empower couples to create their own wedding florals with expert guidance. Our DIY packages include pre-designed arrangements, step-by-step tutorials, and full support to bring your vision to life—at a fraction of traditional florist costs.",
-    image: '/images/specialty/diy-wedding.jpg',
+      'Empower your celebration with pre-designed arrangements and step-by-step guidance. Perfect for couples seeking creative control and exceptional value.',
+    image: WEDDING_ARCH,
     cta: 'Learn About DIY',
     ctaLink: '/weddings',
-    color: 'sage',
   },
   {
-    title: 'Luxury Wedding Venues',
+    title: 'Luxury Venue Florals',
     description:
-      "We partner with Las Vegas's most prestigious venues to deliver sophisticated floral installations. From grand ballrooms to intimate garden settings, we create arrangements that complement your venue and elevate your celebration.",
-    image: '/images/specialty/luxury-venue.jpg',
-    cta: 'Venue Arrangements',
+      'Grand ballrooms to intimate gardens — we craft sophisticated installations that complement your venue and elevate the entire celebration.',
+    image: RECEPTION_TABLE,
+    cta: 'Venue Collections',
     ctaLink: '/weddings',
-    color: 'gold',
   },
   {
-    title: 'Las Vegas Strip & Casino Events',
+    title: 'Las Vegas Strip Events',
     description:
-      'From intimate private events at luxury properties to grand casino celebrations, we design bold, glamorous arrangements that match the glitz of the Strip. Our high-impact designs are built for statement moments.',
-    image: '/images/specialty/strip-events.jpg',
-    cta: 'Explore Strip Services',
+      'Bold, glamorous arrangements designed for statement moments. From luxury properties to grand celebrations, we match the sophistication of the Strip.',
+    image: PARTY_IMG,
+    cta: 'Explore Services',
     ctaLink: '/parties',
-    color: 'ivory',
   },
 ];
 
 export default function SpecialtyPage() {
   return (
-    <div className="min-h-screen bg-[#FAF8F3]">
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#5A6B54] to-[#5A6B54]/90">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-[#FAF8F3] mb-4">
-            Specialty Services
-          </h1>
-          <p className="text-lg text-[#FAF8F3]/90 font-dmSans">
-            Tailored floral solutions for your unique celebration
+    <div style={{ background: IVORY }}>
+      {/* Header */}
+      <section className="border-b pt-20 pb-16" style={{ borderColor: BORDER, background: CARD }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <SectionHead
+            label="Tailored Floral Solutions"
+            heading={<>Specialty<br />Services</>}
+          />
+          <p style={{ color: MUTED, marginTop: '0.8rem', fontSize: '0.97rem', maxWidth: '500px' }}>
+            From intimate gatherings to grand celebrations, we design arrangements that reflect your vision and elevate your event.
           </p>
         </div>
       </section>
 
-      {/* Specialty Cards Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Services Grid */}
+      <section className="py-16" style={{ borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {specialtyServices.map((service, idx) => (
               <div
                 key={idx}
-                className="group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white"
+                className="group border overflow-hidden transition-shadow duration-300 hover:shadow-lg"
+                style={{ borderColor: BORDER, background: '#fff' }}
               >
                 {/* Image */}
-                <div className="relative h-64 overflow-hidden bg-gray-100">
-                  <img
+                <div style={{ height: '240px', overflow: 'hidden', background: CARD }}>
+                  <Image
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={400}
+                    height={240}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-2xl font-playfair font-bold text-[#5A6B54] mb-3">
+                  <h3 style={{ fontFamily: serif, fontSize: '1.25rem', fontWeight: 500, color: INK, marginBottom: '0.75rem' }}>
                     {service.title}
                   </h3>
-                  <p className="text-gray-700 font-dmSans text-sm leading-relaxed mb-6">
+                  <p style={{ color: MUTED, lineHeight: 1.75, fontSize: '0.88rem', marginBottom: '1.5rem' }}>
                     {service.description}
                   </p>
-
-                  {/* CTA Button */}
                   <Link
                     href={service.ctaLink}
-                    className={`inline-block px-6 py-2 rounded-sm font-dmSans font-semibold text-sm transition-all duration-300 ${
-                      service.color === 'sage'
-                        ? 'bg-[#5A6B54] text-[#FAF8F3] hover:bg-[#4a5a44]'
-                        : service.color === 'gold'
-                        ? 'bg-[#B8995A] text-[#FAF8F3] hover:bg-[#a8894a]'
-                        : 'bg-[#FAF8F3] text-[#5A6B54] border-2 border-[#5A6B54] hover:bg-[#5A6B54] hover:text-[#FAF8F3]'
-                    }`}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold hover:opacity-85 transition-opacity uppercase"
+                    style={{ background: SAGE, color: '#fff', letterSpacing: '0.08em' }}
                   >
-                    {service.cta}
+                    {service.cta} <ArrowRight size={13} />
                   </Link>
                 </div>
               </div>
@@ -98,54 +96,50 @@ export default function SpecialtyPage() {
         </div>
       </section>
 
-      {/* Why Choose AFUVAI Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-playfair font-bold text-[#5A6B54] text-center mb-12">
-            Why Choose AFUVAI
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Why Choose Afuvai */}
+      <section className="py-16" style={{ borderBottom: `1px solid ${BORDER}`, background: CARD }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <div className="text-center mb-12">
+            <SectionHead label="Excellence" heading="Why Choose Afuvai" center />
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
             {[
-              {
-                title: 'Expert Design',
-                desc: 'Decades of floral artistry meets modern aesthetic sensibilities',
-              },
-              {
-                title: 'Customization',
-                desc: 'Every arrangement tailored to your venue, vision, and budget',
-              },
-              {
-                title: 'Local Expertise',
-                desc: 'Deep knowledge of Las Vegas venues and event requirements',
-              },
-              {
-                title: 'Premium Quality',
-                desc: 'Fresh, seasonal flowers sourced from the finest growers',
-              },
+              { title: 'Expert Design', desc: 'Decades of floral artistry meets refined aesthetic sensibility' },
+              { title: 'Full Customization', desc: 'Every arrangement tailored to your vision, venue, and budget' },
+              { title: 'Local Mastery', desc: 'Deep expertise in Las Vegas venues and event requirements' },
+              { title: 'Premium Quality', desc: 'Fresh, seasonal flowers sourced from the finest growers' },
             ].map((item, idx) => (
               <div key={idx} className="text-center">
-                <h3 className="text-xl font-playfair font-bold text-[#B8995A] mb-2">
+                <h3 style={{ fontFamily: serif, fontSize: '1.1rem', fontWeight: 500, color: INK, marginBottom: '0.5rem' }}>
                   {item.title}
                 </h3>
-                <p className="text-gray-700 font-dmSans text-sm">{item.desc}</p>
+                <p style={{ color: MUTED, lineHeight: 1.75, fontSize: '0.88rem' }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 px-4 bg-[#5A6B54] text-center">
-        <h2 className="text-3xl font-playfair font-bold text-[#FAF8F3] mb-4">Ready to Plan?</h2>
-        <p className="text-[#FAF8F3]/90 font-dmSans mb-6 max-w-2xl mx-auto">
-          Let's discuss your vision and create something extraordinary
-        </p>
-        <Link
-          href="/consultation"
-          className="inline-block px-8 py-3 bg-[#B8995A] text-[#FAF8F3] rounded-sm font-dmSans font-semibold hover:bg-[#a8894a] transition-colors"
-        >
-          Schedule Free Consultation
-        </Link>
+      {/* CTA */}
+      <section className="py-20" style={{ background: SAGE }}>
+        <div className="max-w-2xl mx-auto px-5 text-center">
+          <p style={{ fontSize: '0.68rem', letterSpacing: '0.24em', color: GOLD_L, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Ready to Celebrate?
+          </p>
+          <h2 style={{ fontFamily: serif, fontSize: '2rem', color: IVORY, marginBottom: '1rem' }}>
+            Let's discuss your vision.
+          </h2>
+          <p style={{ color: 'rgba(250,248,243,0.7)', fontSize: '0.95rem', marginBottom: '2rem' }}>
+            Schedule a free consultation to explore possibilities tailored to your event.
+          </p>
+          <Link
+            href="/consultation"
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 hover:bg-white/10 transition-colors font-semibold uppercase text-sm"
+            style={{ color: IVORY, borderColor: IVORY, letterSpacing: '0.12em' }}
+          >
+            Free Consultation <ArrowRight size={14} />
+          </Link>
+        </div>
       </section>
     </div>
   );

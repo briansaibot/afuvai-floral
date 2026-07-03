@@ -104,7 +104,7 @@ export default function CollabsForm() {
             Send My Pitch
           </button>
           <p className="text-sm text-center" style={{ color: MUTED }}>
-            We respond within 48 hours · admin@afuvai.com
+            We respond within 48 hours · hello@afuvai.com
           </p>
         </form>
       </div>

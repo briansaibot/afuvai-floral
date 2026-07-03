@@ -20,7 +20,7 @@ export default function GiftCardsPage() {
       toast.error("Minimum gift card amount is $25.");
       return;
     }
-    toast.success(`Gift card for $${total} — contact admin@afuvai.com to complete your purchase!`, { duration: 6000 });
+    toast.success(`Gift card for $${total} — contact hello@afuvai.com to complete your purchase!`, { duration: 6000 });
   };
 
   return (
@@ -137,7 +137,7 @@ export default function GiftCardsPage() {
                 Purchase Gift Card
               </button>
               <p className="text-sm text-center" style={{ color: MUTED }}>
-                Purchase via admin@afuvai.com · No expiration
+                Purchase via hello@afuvai.com · No expiration
               </p>
             </form>
           </div>

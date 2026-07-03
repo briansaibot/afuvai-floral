@@ -27,7 +27,7 @@ export default function AccountPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Account login coming soon — contact admin@afuvai.com for assistance.");
+    toast.success("Account login coming soon — contact hello@afuvai.com for assistance.");
   };
 
   if (!loggedIn) {
@@ -73,7 +73,7 @@ export default function AccountPage() {
             </button>
           </form>
           <p className="text-center mt-4" style={{ fontSize: "0.82rem", color: MUTED }}>
-            Account system coming soon. <a href="mailto:admin@afuvai.com" style={{ color: SAGE }}>Email us</a> for help.
+            Account system coming soon. <a href="mailto:hello@afuvai.com" style={{ color: SAGE }}>Email us</a> for help.
           </p>
           {/* Show wishlist even when not logged in */}
           {wishedProducts.length > 0 && (
@@ -163,7 +163,7 @@ export default function AccountPage() {
             )}
             {tab === "settings" && (
               <div className="p-8 border" style={{ borderColor: BORDER, background: CARD }}>
-                <p style={{ color: MUTED, fontSize: "0.9rem" }}>Account settings coming soon. Contact <a href="mailto:admin@afuvai.com" style={{ color: SAGE }}>admin@afuvai.com</a> for changes.</p>
+                <p style={{ color: MUTED, fontSize: "0.9rem" }}>Account settings coming soon. Contact <a href="mailto:hello@afuvai.com" style={{ color: SAGE }}>hello@afuvai.com</a> for changes.</p>
               </div>
             )}
           </div>

@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   addressRegion: "NV",
                   addressCountry: "US",
                 },
-                email: "admin@afuvai.com",
+                email: "hello@afuvai.com",
                 openingHours: "Mo-Su 09:00-17:00",
                 priceRange: "$$$$",
                 sameAs: ["https://instagram.com/afuvaifloral"],

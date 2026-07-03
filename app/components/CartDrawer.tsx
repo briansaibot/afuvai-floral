@@ -105,7 +105,7 @@ export function CartDrawer() {
               Proceed to Checkout
             </button>
             <p className="text-center mt-3" style={{ fontSize: "0.72rem", color: MUTED }}>
-              Online checkout coming soon · admin@afuvai.com
+              Online checkout coming soon · hello@afuvai.com
             </p>
           </div>
         )}

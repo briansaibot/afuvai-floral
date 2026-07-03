@@ -60,7 +60,7 @@ export default function ClassesPage() {
                   </div>
                   <p style={{ color: MUTED, lineHeight: 1.75, fontSize: "0.9rem", marginBottom: "1.2rem" }}>{cls.desc}</p>
                   <a
-                    href="mailto:admin@afuvai.com?subject=Class%20Booking"
+                    href="mailto:hello@afuvai.com?subject=Class%20Booking"
                     className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold uppercase hover:opacity-85 transition-opacity"
                     style={{ background: SAGE, color: "#fff", letterSpacing: "0.1em" }}
                   >
@@ -74,25 +74,25 @@ export default function ClassesPage() {
       </section>
 
       {/* What to expect */}
-      <section className="py-16 border-b" style={{ borderColor: BORDER, background: CARD }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8">
-          <div className="text-center mb-12">
+      <section className="border-b" style={{ borderColor: BORDER, background: CARD }}>
+        <div className="max-w-7xl mx-auto px-5 md:px-8 py-10">
+          <div className="text-center mb-8">
             <SectionHead label="What to Expect" heading="A class at Afuvai" center />
           </div>
           <div className="grid md:grid-cols-3 gap-0">
             {[
-              { symbol: "✦", title: "All Materials Included", body: "Stems, tools, ribbon, vase, and care card — everything is provided. Just bring yourself." },
-              { symbol: "◇", title: "Guided by AmiDayne",    body: "Every class is led by AmiDayne personally. Small groups ensure individual attention." },
-              { symbol: "◆", title: "Take It Home",          body: "You leave with a finished arrangement designed by your own hands. No two are ever alike." },
+              { symbol: "✦", title: "All Materials Included", body: "Stems, tools, ribbon, vase — everything is provided." },
+              { symbol: "◇", title: "Guided by AmiDayne",    body: "Every class led personally. Small groups, individual attention." },
+              { symbol: "◆", title: "Take It Home",          body: "You leave with a finished arrangement designed by you." },
             ].map((item, i) => (
               <div
                 key={item.title}
-                className={`p-8 border-b md:border-b-0 ${i < 2 ? "md:border-r" : ""}`}
+                className={`p-6 border-b md:border-b-0 ${i < 2 ? "md:border-r" : ""}`}
                 style={{ borderColor: BORDER }}
               >
-                <div style={{ fontFamily: serif, fontSize: "1.4rem", color: GOLD, marginBottom: "0.75rem" }}>{item.symbol}</div>
-                <h3 style={{ fontFamily: serif, fontSize: "1.1rem", fontWeight: 500, color: INK, marginBottom: "0.5rem" }}>{item.title}</h3>
-                <p style={{ color: MUTED, lineHeight: 1.75, fontSize: "0.88rem" }}>{item.body}</p>
+                <div style={{ fontFamily: serif, fontSize: "1.3rem", color: GOLD, marginBottom: "0.5rem" }}>{item.symbol}</div>
+                <h3 style={{ fontFamily: serif, fontSize: "1rem", fontWeight: 500, color: INK, marginBottom: "0.4rem" }}>{item.title}</h3>
+                <p style={{ color: MUTED, lineHeight: 1.6, fontSize: "0.8rem" }}>{item.body}</p>
               </div>
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function ClassesPage() {
             Class schedule releases monthly. Email us to get on the list or book a private session.
           </p>
           <a
-            href="mailto:admin@afuvai.com?subject=Class%20Inquiry"
+            href="mailto:hello@afuvai.com?subject=Class%20Inquiry"
             className="inline-flex items-center gap-2 px-8 py-4 border-2 hover:bg-white/10 transition-colors font-semibold uppercase text-sm"
             style={{ color: IVORY, borderColor: IVORY, letterSpacing: "0.12em" }}
           >

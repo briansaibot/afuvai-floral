@@ -335,6 +335,7 @@ export const DROPDOWN_NAV = [
       { label: "Design Inspiration",  href: "/journal" },
       { label: "Care Guide",          href: "/care-tips" },
       { label: "Free Consultation",   href: "/consultation" },
+      { label: "Portfolio",           href: "/portfolio" },
       { label: "Subscriptions",       href: "/subscriptions" },
       { label: "Gift Cards",          href: "/gift-cards" },
     ],

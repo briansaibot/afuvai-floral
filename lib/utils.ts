@@ -10,5 +10,5 @@ export async function redirectToStripeCheckout(
 ) {
   // Stripe checkout stub — Phase 3
   const { toast } = await import("sonner");
-  toast.error("Online checkout is coming soon — contact admin@afuvai.com to place your order.", { duration: 5000 });
+  toast.error("Online checkout is coming soon — contact hello@afuvai.com to place your order.", { duration: 5000 });
 }

@@ -75,8 +75,8 @@ export default function FloristPage() {
                 ))}
               </div>
               <div className="space-y-2">
-                <a href="mailto:admin@afuvai.com" className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
-                  <Mail size={14} /> admin@afuvai.com
+                <a href="mailto:hello@afuvai.com" className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
+                  <Mail size={14} /> hello@afuvai.com
                 </a>
                 <p className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
                   <Clock size={14} /> Open daily, 9 am – 5 pm
@@ -163,7 +163,7 @@ export default function FloristPage() {
             <SectionHead label="Connect" heading="Work with AmiDayne" />
             <div className="mt-8 space-y-4">
               {[
-                { icon: Mail, label: "Email", value: "admin@afuvai.com", href: "mailto:admin@afuvai.com" },
+                { icon: Mail, label: "Email", value: "hello@afuvai.com", href: "mailto:hello@afuvai.com" },
                 { icon: Clock, label: "Hours", value: "Open daily, 9 am – 5 pm", href: null },
                 { icon: MapPin, label: "Service Area", value: "Las Vegas Valley — delivery only", href: null },
                 { icon: Instagram, label: "Instagram", value: "@afuvaifloral", href: "https://instagram.com/afuvaifloral" },

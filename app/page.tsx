@@ -5,7 +5,7 @@ import { ArrowRight, Star, Truck, Leaf, Phone } from "lucide-react";
 import { ProductGrid } from "./components/ProductGrid";
 import { SectionHead } from "./components/SectionHead";
 import {
-  BORDER, BORDER_G, CARD, GOLD, GOLD_L, HERO_IMG, INK, IVORY, MUTED, SAGE, SAGE_D, STUDIO_IMG,
+  BORDER, BORDER_G, CARD, GOLD, GOLD_L, HERO_IMG, INK, IVORY, MUTED, SAGE, SAGE_D, STUDIO_IMG, WORKSHOP_IMG,
   TESTIMONIALS, SUB_TIERS, SUB_FREQUENCIES, serif, sans,
   IMG_PURSE, IMG_PURSE_BLACK, IMG_PURSE_LIFESTYLE, IMG_GOLDEN_HOUR, IMG_GARDEN_REVERIE,
   PINK_BOUQUET, PURPLE_BOUQUET, WHITE_FLORAL,
@@ -101,7 +101,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { icon: Truck,  label: "Same-Day Delivery",   sub: "Las Vegas Valley" },
+              { icon: Truck,  label: "Same-Day Delivery",   sub: "Order by 11am" },
               { icon: Star,   label: "5-Star Rated",        sub: "100+ reviews" },
               { icon: Leaf,   label: "Sustainably Sourced", sub: "Certified farms" },
               { icon: Phone,  label: "Open Daily",          sub: "9 am – 5 pm" },
@@ -122,45 +122,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Purse Spotlight */}
+      {/* Classes Highlight */}
       <section className="border-b" style={{ borderColor: BORDER, background: CARD }}>
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="grid md:grid-cols-2 gap-0">
-            {/* Images */}
-            <div
-              className="flex flex-col items-center justify-center py-10 px-6 gap-5 order-2 md:order-1"
-              style={{ background: "#fff", minHeight: "320px" }}
-            >
-              <div className="flex gap-4 w-full">
-                <div className="relative flex-1 overflow-hidden" style={{ aspectRatio: "3/4" }}>
-                  <Image
-                    src={IMG_PURSE}
-                    alt="The Afuvai Purse with Gold Chain — luxury floral arrangement in acrylic purse"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="relative flex-1 overflow-hidden" style={{ aspectRatio: "3/4" }}>
-                  <Image
-                    src={IMG_PURSE_BLACK}
-                    alt="The Afuvai Purse with Black Chain — luxury floral arrangement in acrylic purse"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              </div>
-              <div className="overflow-hidden w-full" style={{ maxHeight: "140px" }}>
-                <Image
-                  src={IMG_PURSE_LIFESTYLE}
-                  alt="The Afuvai Purse in Las Vegas — lifestyle shot"
-                  width={600}
-                  height={140}
-                  className="w-full h-full object-cover object-top"
-                  style={{ maxHeight: "140px" }}
-                />
-              </div>
+            {/* Image */}
+            <div className="relative h-80 order-2 md:order-1" style={{ background: CARD }}>
+              <Image
+                src={WORKSHOP_IMG}
+                alt="Floral design class with AmiDayne — Las Vegas"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
 
             {/* Copy */}
@@ -175,7 +149,7 @@ export default function HomePage() {
                 <span
                   style={{ fontSize: "0.65rem", letterSpacing: "0.22em", color: GOLD, textTransform: "uppercase" }}
                 >
-                  ✦ Signature Creation · Bestseller
+                  Classes
                 </span>
               </div>
               <h2
@@ -188,39 +162,22 @@ export default function HomePage() {
                   marginBottom: "1.2rem",
                 }}
               >
-                The Afuvai<br />
-                <em style={{ color: GOLD, fontStyle: "italic" }}>Purse</em>
+                Learn Floral<br />
+                <em style={{ color: GOLD, fontStyle: "italic" }}>Design</em>
               </h2>
               <p style={{ color: MUTED, lineHeight: 1.85, fontSize: "1rem", marginBottom: "1.5rem", maxWidth: "420px" }}>
-                Garden roses, peonies, carnations, and ranunculus hand-arranged inside a luxury acrylic purse. Choose gold or matte black chain. No two are ever identical. Designed in Las Vegas, delivered to your door.
+                Public and private floral design classes in Las Vegas. All skill levels welcome. Leave with a finished arrangement and new techniques to impress at home.
               </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {["Garden Roses", "Peonies", "Carnations", "Ranunculus", "Gold or Black Chain"].map((t) => (
-                  <span key={t} className="px-3 py-1 border text-xs" style={{ color: SAGE, borderColor: SAGE, letterSpacing: "0.05em" }}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="flex items-baseline gap-3 mb-6">
-                <span style={{ fontFamily: serif, fontSize: "2rem", color: GOLD }}>From $225</span>
-                <span style={{ fontSize: "0.82rem", color: MUTED }}>· Mini, Classic & Grand sizes</span>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/product/1"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold hover:opacity-85 transition-opacity"
-                  style={{ background: SAGE, color: "#fff", letterSpacing: "0.06em" }}
-                >
-                  Shop Gold Chain →
-                </Link>
-                <Link
-                  href="/product/23"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold border hover:opacity-85 transition-opacity"
-                  style={{ borderColor: INK, color: INK, letterSpacing: "0.06em" }}
-                >
-                  Shop Black Chain →
-                </Link>
-              </div>
+              <p style={{ color: MUTED, lineHeight: 1.8, fontSize: "0.9rem", marginBottom: "2rem" }}>
+                <strong>Beginner</strong> • Seasonal Design • Advanced Arrangement • Private Group Sessions
+              </p>
+              <Link
+                href="/classes"
+                className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold hover:opacity-85 transition-opacity"
+                style={{ background: SAGE, color: "#fff", letterSpacing: "0.06em", width: "fit-content" }}
+              >
+                Explore Classes →
+              </Link>
             </div>
           </div>
         </div>
@@ -435,7 +392,7 @@ export default function HomePage() {
               Shop Now
             </Link>
             <a
-              href="mailto:admin@afuvai.com"
+              href="mailto:hello@afuvai.com"
               className="px-8 py-4 text-base font-semibold border-2 hover:bg-white/10 transition-colors"
               style={{ color: IVORY, borderColor: "rgba(250,248,243,0.4)", letterSpacing: "0.08em" }}
             >

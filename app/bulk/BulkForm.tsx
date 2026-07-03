@@ -114,7 +114,7 @@ export default function BulkForm() {
             Submit Bulk Inquiry
           </button>
           <p className="text-sm text-center" style={{ color: MUTED }}>
-            Delivery only · Las Vegas Valley · admin@afuvai.com
+            Delivery only · Las Vegas Valley · hello@afuvai.com
           </p>
         </form>
       </div>

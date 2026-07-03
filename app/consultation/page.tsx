@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import ConsultationCalendar from '@/app/components/ConsultationCalendar';
+import { BORDER, CARD, GOLD, GOLD_L, INK, IVORY, MUTED, SAGE, serif } from '@/lib/constants';
+import { SectionHead } from '@/app/components/SectionHead';
 
 export const metadata: Metadata = {
   title: 'Free Consultation | Afuvai Floral Society',
@@ -8,75 +10,61 @@ export const metadata: Metadata = {
 
 export default function ConsultationPage() {
   return (
-    <div className="min-h-screen bg-[#FAF8F3]">
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#5A6B54] to-[#5A6B54]/90">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-[#FAF8F3] mb-4">
-            Schedule Your Free Consultation
-          </h1>
-          <p className="text-lg text-[#FAF8F3]/90 font-dmSans">
-            Let's discuss your floral vision and create something beautiful together
+    <div style={{ background: IVORY }}>
+      {/* Header */}
+      <section className="border-b pt-20 pb-16" style={{ borderColor: BORDER, background: CARD }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <SectionHead
+            label="Book Your Session"
+            heading={<>Free<br />Consultation</>}
+          />
+          <p style={{ color: MUTED, marginTop: '0.8rem', fontSize: '0.97rem', maxWidth: '500px' }}>
+            30 minutes with our lead designer to discuss your vision, budget, and timeline.
           </p>
         </div>
       </section>
 
       {/* Calendar Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+      <section className="py-20 border-b" style={{ borderColor: BORDER }}>
+        <div className="max-w-3xl mx-auto px-5 md:px-8">
+          <div className="bg-white border p-8 md:p-12" style={{ borderColor: BORDER }}>
             <div className="mb-8 text-center">
-              <h2 className="text-3xl font-playfair font-bold text-[#5A6B54] mb-2">
-                Pick Your Date & Time
+              <h2 style={{ fontFamily: serif, fontSize: '1.4rem', fontWeight: 500, color: INK, marginBottom: '0.5rem' }}>
+                Choose Your Date & Time
               </h2>
-              <p className="text-gray-700 font-dmSans text-sm">
-                30-minute consultation • Free • Via Zoom or in-person (Vegas area)
+              <p style={{ color: MUTED, fontSize: '0.88rem' }}>
+                Monday–Saturday • 10am, 2pm, 4pm
               </p>
             </div>
-
-            {/* Calendar Component */}
             <ConsultationCalendar />
           </div>
         </div>
       </section>
 
       {/* What to Expect */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-playfair font-bold text-[#5A6B54] mb-12 text-center">
-            What to Expect
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <section className="py-16 border-b" style={{ borderColor: BORDER, background: CARD }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <div className="text-center mb-12">
+            <SectionHead label="Preparation" heading="What to Expect" center />
+          </div>
+          <div className="grid md:grid-cols-4 gap-6">
             {[
-              {
-                step: '1',
-                title: 'Book Your Slot',
-                desc: 'Choose your preferred date and time from the calendar above',
-              },
-              {
-                step: '2',
-                title: 'Receive Confirmation',
-                desc: 'Get email confirmation and Zoom link (or Vegas location details)',
-              },
-              {
-                step: '3',
-                title: 'Consultation Call',
-                desc: 'Discuss your vision, budget, and timeline with our lead designer',
-              },
-              {
-                step: '4',
-                title: 'Next Steps',
-                desc: "We'll send a proposal and timeline to bring your idea to life",
-              },
+              { step: '1', title: 'Book Your Slot', desc: 'Select your preferred date and time' },
+              { step: '2', title: 'Confirmation', desc: 'Email confirmation with Zoom or Vegas location details' },
+              { step: '3', title: 'Consultation Call', desc: 'Discuss your vision, budget, and timeline' },
+              { step: '4', title: 'Next Steps', desc: 'Receive a proposal and project timeline' },
             ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="inline-block w-12 h-12 bg-[#B8995A] text-[#FAF8F3] rounded-full flex items-center justify-center font-playfair font-bold text-xl mb-3">
+              <div key={item.step} className="text-center">
+                <div
+                  className="inline-block w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm mb-3"
+                  style={{ background: GOLD, color: IVORY, fontFamily: serif }}
+                >
                   {item.step}
                 </div>
-                <h3 className="text-lg font-playfair font-bold text-[#5A6B54] mb-2">
+                <h3 style={{ fontFamily: serif, fontSize: '1rem', fontWeight: 500, color: INK, marginBottom: '0.5rem' }}>
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-700 font-dmSans">{item.desc}</p>
+                <p style={{ color: MUTED, fontSize: '0.8rem' }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -84,39 +72,39 @@ export default function ConsultationPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-playfair font-bold text-[#5A6B54] mb-8 text-center">
-            Consultation FAQ
-          </h2>
+      <section className="py-16 border-b" style={{ borderColor: BORDER }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <div className="mb-12">
+            <SectionHead label="Questions" heading="Consultation FAQ" center />
+          </div>
           <div className="space-y-6">
             {[
               {
-                q: "Is the consultation really free?",
-                a: "Yes! We offer a complimentary 30-minute consultation to discuss your vision, budget, and ideas—no strings attached.",
+                q: 'Is the consultation really free?',
+                a: 'Yes. We offer a complimentary 30-minute consultation to discuss your vision, budget, and ideas—no obligation.',
               },
               {
-                q: "Can I do the consultation by Zoom?",
-                a: "Absolutely. We offer both Zoom and in-person consultations for Las Vegas area clients. Choose what works best for you.",
+                q: 'Zoom or in-person?',
+                a: 'Both available. We offer Zoom consultations for remote clients and in-person meetings for Las Vegas area clients.',
               },
               {
-                q: "Do I need to have a specific idea for my event?",
-                a: "Not at all. Come with inspiration, Pinterest boards, color preferences, or just a general idea. We'll help refine your vision together.",
+                q: 'Do I need to have a specific idea?',
+                a: 'Not at all. Come with inspiration, Pinterest boards, color preferences, or a general concept. We refine your vision together.',
               },
               {
-                q: "What if I need to reschedule?",
-                a: "No problem. Just reply to your confirmation email at least 24 hours before your slot to reschedule.",
+                q: 'How far in advance should I book?',
+                a: 'Weddings: 2–3 months ahead. Events and specialty services: 4–6 weeks is ideal. We accommodate rush requests when possible.',
               },
               {
-                q: "How far in advance should I book?",
-                a: "For weddings, book 2-3 months ahead. For events and specialty services, 4-6 weeks is ideal. We can accommodate rush requests.",
+                q: 'What if I need to reschedule?',
+                a: 'No problem. Reply to your confirmation email at least 24 hours before your slot to reschedule.',
               },
             ].map((item, idx) => (
-              <div key={idx} className="bg-white rounded-lg p-6 shadow-md">
-                <h3 className="font-playfair font-bold text-[#5A6B54] text-lg mb-2">
+              <div key={idx} className="border-b pb-6" style={{ borderColor: BORDER }}>
+                <h3 style={{ fontFamily: serif, fontSize: '1.05rem', fontWeight: 500, color: INK, marginBottom: '0.5rem' }}>
                   {item.q}
                 </h3>
-                <p className="text-gray-700 font-dmSans text-sm">{item.a}</p>
+                <p style={{ color: MUTED, fontSize: '0.9rem', lineHeight: 1.75 }}>{item.a}</p>
               </div>
             ))}
           </div>
@@ -124,13 +112,18 @@ export default function ConsultationPage() {
       </section>
 
       {/* Contact Alternative */}
-      <section className="py-16 px-4 bg-[#5A6B54] text-center">
-        <h2 className="text-2xl font-playfair font-bold text-[#FAF8F3] mb-4">
-          Prefer to Call or Email?
-        </h2>
-        <p className="text-[#FAF8F3]/90 font-dmSans mb-6">
-          hello@afuvai.com • (702) 555-AFUVAI
-        </p>
+      <section className="py-16" style={{ background: SAGE }}>
+        <div className="max-w-2xl mx-auto px-5 text-center">
+          <h2 style={{ fontFamily: serif, fontSize: '1.4rem', color: IVORY, marginBottom: '0.75rem' }}>
+            Prefer to reach out directly?
+          </h2>
+          <p style={{ color: 'rgba(250,248,243,0.8)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+            hello@afuvai.com
+          </p>
+          <p style={{ color: 'rgba(250,248,243,0.7)', fontSize: '0.88rem' }}>
+            Open daily, 9 am–5 pm PST
+          </p>
+        </div>
       </section>
     </div>
   );

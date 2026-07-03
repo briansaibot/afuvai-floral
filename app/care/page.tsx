@@ -73,11 +73,11 @@ export default function CarePage() {
         >
           <p style={{ color: MUTED, fontSize: "0.88rem" }}>Questions about your arrangement?</p>
           <a
-            href="mailto:admin@afuvai.com"
+            href="mailto:hello@afuvai.com"
             className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity"
             style={{ background: SAGE, color: "#fff" }}
           >
-            <Mail size={13} /> admin@afuvai.com
+            <Mail size={13} /> hello@afuvai.com
           </a>
         </div>
       </div>

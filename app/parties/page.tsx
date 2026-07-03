@@ -131,7 +131,7 @@ export default function PartiesPage() {
             Tell us about your event and we'll send a custom proposal within 48 hours.
           </p>
           <a
-            href="mailto:admin@afuvai.com?subject=Floral%20Party%20Booking"
+            href="mailto:hello@afuvai.com?subject=Floral%20Party%20Booking"
             className="inline-flex items-center gap-2 px-10 py-5 text-base font-semibold border-2 hover:bg-white/10 transition-colors"
             style={{ color: IVORY, borderColor: IVORY, letterSpacing: "0.1em" }}
           >

@@ -40,7 +40,7 @@ export function Footer() {
               </span>
             </div>
             <p style={{ fontSize: "0.88rem", lineHeight: 1.75, color: "rgba(250,248,243,0.55)", marginBottom: "1.2rem" }}>
-              Las Vegas luxury floral design. Same-day delivery, VIP experiences, and floral classes across the Las Vegas Valley.
+              Las Vegas luxury floral design. Same-day delivery, floral classes, and custom event florals across the Las Vegas Valley.
             </p>
             <div className="flex gap-4">
               <a
@@ -135,12 +135,12 @@ export function Footer() {
             </p>
             <div className="space-y-3">
               <a
-                href="mailto:admin@afuvai.com"
+                href="mailto:hello@afuvai.com"
                 className="flex items-start gap-2 hover:opacity-80 transition-opacity"
                 style={{ fontSize: "0.88rem", color: "rgba(250,248,243,0.55)" }}
               >
                 <Mail size={13} style={{ marginTop: "2px", flexShrink: 0 }} />
-                admin@afuvai.com
+                hello@afuvai.com
               </a>
               <div className="flex items-start gap-2" style={{ fontSize: "0.88rem", color: "rgba(250,248,243,0.55)" }}>
                 <Clock size={13} style={{ marginTop: "2px", flexShrink: 0 }} />

@@ -592,7 +592,7 @@ export default function App() {
                       { label: "Subscriptions", page: "subscriptions" as Page },
                       { label: "Care Guide", page: "care" as Page },
                       { label: "Contact", page: "florist" as Page },
-                      { label: "admin@afuvai.com", page: "florist" as Page },
+                      { label: "hello@afuvai.com", page: "florist" as Page },
                     ].map(({ label, page: target }) => (
                       <button key={label} onClick={() => { navigate(target); setDropOpen(false); }}
                         style={{ fontSize: "0.73rem", color: MUTED, letterSpacing: "0.04em" }}
@@ -679,7 +679,7 @@ export default function App() {
       </div>
       {/* Footer info */}
       <div className="px-8 py-5 border-t" style={{ borderColor: "rgba(250,248,243,0.12)" }}>
-        <p style={{ fontSize: "0.78rem", color: "rgba(250,248,243,0.5)", marginBottom: "0.75rem" }}>admin@afuvai.com · Open daily 9am–5pm</p>
+        <p style={{ fontSize: "0.78rem", color: "rgba(250,248,243,0.5)", marginBottom: "0.75rem" }}>hello@afuvai.com · Open daily 9am–5pm</p>
         <div className="flex gap-5">
           <a href="https://instagram.com/afuvaifloral" target="_blank" rel="noreferrer" style={{ color: "rgba(250,248,243,0.45)" }}><Instagram size={17} /></a>
           <a href="https://facebook.com" target="_blank" rel="noreferrer" style={{ color: "rgba(250,248,243,0.45)" }}><Facebook size={17} /></a>
@@ -750,7 +750,7 @@ export default function App() {
             <div className="mb-4"><Logo h="52px" /></div>
             <p style={{ fontSize: "0.87rem", color: MUTED, lineHeight: 1.75, maxWidth: "240px" }}>Luxury floral design, VIP experiences, and floral education delivered across the Las Vegas Valley.</p>
             <div className="mt-4 space-y-1.5">
-              <a href="mailto:admin@afuvai.com" className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity" style={{ color: MUTED }}><Mail size={13} /> admin@afuvai.com</a>
+              <a href="mailto:hello@afuvai.com" className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity" style={{ color: MUTED }}><Mail size={13} /> hello@afuvai.com</a>
               <p className="flex items-center gap-2 text-sm" style={{ color: MUTED }}><Clock size={13} /> Open daily, 9 am – 5 pm</p>
               <p className="flex items-center gap-2 text-sm" style={{ color: MUTED }}><MapPin size={13} /> Las Vegas Valley — delivery only</p>
             </div>
@@ -1721,7 +1721,7 @@ export default function App() {
             <h2 style={{ fontFamily: serif, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 500, color: IVORY, marginBottom: "1rem" }}>Ready to bloom together?</h2>
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               <a href="tel:+17025550100" className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium border hover:bg-white/10 transition-colors" style={{ color: IVORY, borderColor: "rgba(250,248,243,0.28)" }}><Phone size={14} /> (702) 555-0100</a>
-              <a href="mailto:admin@afuvai.com" className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium border hover:bg-white/10 transition-colors" style={{ color: IVORY, borderColor: "rgba(250,248,243,0.28)" }}><Mail size={14} /> admin@afuvai.com</a>
+              <a href="mailto:hello@afuvai.com" className="flex items-center gap-2 px-6 py-3.5 text-sm font-medium border hover:bg-white/10 transition-colors" style={{ color: IVORY, borderColor: "rgba(250,248,243,0.28)" }}><Mail size={14} /> hello@afuvai.com</a>
             </div>
           </div>
         </section>
@@ -2135,7 +2135,7 @@ export default function App() {
                   className="w-full px-4 py-3 text-base outline-none border resize-none" style={{ background: CARD, borderColor: BORDER, color: INK }} />
               </div>
               <button type="submit" className="w-full py-4 text-base font-semibold uppercase hover:opacity-85 transition-opacity" style={{ background: SAGE, color: "#fff", letterSpacing: "0.14em" }}>Submit Bulk Inquiry</button>
-              <p className="text-sm text-center" style={{ color: MUTED }}>Delivery only · Las Vegas Valley · admin@afuvai.com</p>
+              <p className="text-sm text-center" style={{ color: MUTED }}>Delivery only · Las Vegas Valley · hello@afuvai.com</p>
             </form>
           </div>
         </section>
@@ -2167,7 +2167,7 @@ export default function App() {
                 ))}
               </div>
               <div className="space-y-2">
-                <a href="mailto:admin@afuvai.com" className="flex items-center gap-2 text-sm" style={{ color: MUTED }}><Mail size={14} /> admin@afuvai.com</a>
+                <a href="mailto:hello@afuvai.com" className="flex items-center gap-2 text-sm" style={{ color: MUTED }}><Mail size={14} /> hello@afuvai.com</a>
                 <p className="flex items-center gap-2 text-sm" style={{ color: MUTED }}><Clock size={14} /> Open daily, 9 am – 5 pm</p>
               </div>
             </div>
@@ -2232,7 +2232,7 @@ export default function App() {
           <div>
             <SectionHead label="Connect" heading="Work with AmiDayne" />
             <div className="mt-8 space-y-4">
-              {[{icon:Mail,label:"Email",value:"admin@afuvai.com",href:"mailto:admin@afuvai.com"},
+              {[{icon:Mail,label:"Email",value:"hello@afuvai.com",href:"mailto:hello@afuvai.com"},
                 {icon:Clock,label:"Hours",value:"Open daily, 9 am – 5 pm",href:null},
                 {icon:MapPin,label:"Service Area",value:"Las Vegas Valley — delivery only",href:null},
                 {icon:Instagram,label:"Instagram",value:"@afuvaifloral",href:"https://instagram.com/afuvaifloral"}].map(({ icon:Icon, label, value, href }) => (
@@ -2620,7 +2620,7 @@ export default function App() {
                 Send My Pitch
               </button>
               <p className="text-sm text-center" style={{ color: MUTED }}>
-                We respond within 48 hours · admin@afuvai.com
+                We respond within 48 hours · hello@afuvai.com
               </p>
             </form>
           </div>
@@ -2674,7 +2674,7 @@ export default function App() {
         </div>
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-5 border-t" style={{ borderColor: BORDER }}>
           <p style={{ color: MUTED, fontSize: "0.88rem" }}>Questions about your arrangement?</p>
-          <a href="mailto:admin@afuvai.com" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity" style={{ background: SAGE, color: "#fff" }}><Mail size={13} /> admin@afuvai.com</a>
+          <a href="mailto:hello@afuvai.com" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity" style={{ background: SAGE, color: "#fff" }}><Mail size={13} /> hello@afuvai.com</a>
         </div>
       </div>
     </div>

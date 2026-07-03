@@ -1,167 +1,135 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { BORDER, CARD, GOLD, GOLD_L, INK, IVORY, MUTED, SAGE, serif, sans, STUDIO_IMG, ROSE_IMG, PURPLE_BOUQUET } from '@/lib/constants';
+import { SectionHead } from '@/app/components/SectionHead';
 
 export const metadata: Metadata = {
   title: 'Design Inspiration | Afuvai Floral Society',
-  description: 'Explore floral design ideas, inspiration, and past work from Afuvai Floral',
+  description: 'Explore floral design inspiration, trends, and ideas from Afuvai Floral Society in Las Vegas.',
 };
 
 const inspirationPosts = [
   {
-    title: 'Blush & Gold Wedding',
-    image: '/images/journal/blush-gold-wedding.jpg',
-    category: 'Weddings',
-    link: '/weddings',
+    title: 'Garden Palette Trends 2026',
+    excerpt: 'Soft pastels and jewel tones dominate this season. Discover the colors defining luxury floral design this year.',
+    image: ROSE_IMG,
   },
   {
-    title: 'Tropical Party Setup',
-    image: '/images/journal/tropical-party.jpg',
-    category: 'Parties',
-    link: '/parties',
+    title: 'The Art of Seasonal Arrangement',
+    excerpt: "Seasonal flowers tell a story. Learn how we design around nature's finest blooms throughout the year.",
+    image: PURPLE_BOUQUET,
   },
   {
-    title: 'Minimalist Sage',
-    image: '/images/journal/minimalist-sage.jpg',
-    category: 'Events',
-    link: '/specialty',
-  },
-  {
-    title: 'Bold Strip Gala',
-    image: '/images/journal/bold-strip-gala.jpg',
-    category: 'Specialty',
-    link: '/specialty',
-  },
-  {
-    title: 'Garden Romantic',
-    image: '/images/journal/garden-romantic.jpg',
-    category: 'Weddings',
-    link: '/weddings',
-  },
-  {
-    title: 'Modern Geometric',
-    image: '/images/journal/modern-geometric.jpg',
-    category: 'Events',
-    link: '/specialty',
-  },
-  {
-    title: 'Seasonal Elegance',
-    image: '/images/journal/seasonal-elegance.jpg',
-    category: 'Collections',
-    link: '/shop',
-  },
-  {
-    title: 'Luxury Venue Glow',
-    image: '/images/journal/luxury-venue-glow.jpg',
-    category: 'Weddings',
-    link: '/weddings',
-  },
-  {
-    title: 'Intimate Tablescape',
-    image: '/images/journal/intimate-tablescape.jpg',
-    category: 'Events',
-    link: '/specialty',
+    title: 'Wedding Floral Philosophy',
+    excerpt: 'Every wedding tells a story. Explore our approach to designing florals that reflect your love and vision.',
+    image: STUDIO_IMG,
   },
 ];
 
 export default function JournalPage() {
   return (
-    <div className="min-h-screen bg-[#FAF8F3]">
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#5A6B54] to-[#5A6B54]/90">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-[#FAF8F3] mb-4">
-            Design Inspiration
-          </h1>
-          <p className="text-lg text-[#FAF8F3]/90 font-dmSans">
-            Explore our portfolio of floral designs and find inspiration for your event
+    <div style={{ background: IVORY }}>
+      {/* Header */}
+      <section className="border-b pt-20 pb-16" style={{ borderColor: BORDER, background: CARD }}>
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <SectionHead
+            label="Inspiration & Ideas"
+            heading={<>Design<br />Journal</>}
+          />
+          <p style={{ color: MUTED, marginTop: '0.8rem', fontSize: '0.97rem', maxWidth: '500px' }}>
+            Thoughts on floral design, seasonal beauty, and the art of creating meaningful arrangements.
           </p>
         </div>
       </section>
 
-      {/* Inspiration Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Posts Grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {inspirationPosts.map((post, idx) => (
-              <Link href={post.link} key={idx}>
-                <div className="group relative h-80 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-gray-100">
-                  {/* Image */}
+              <div
+                key={idx}
+                className="group border overflow-hidden transition-shadow duration-300 hover:shadow-lg"
+                style={{ borderColor: BORDER, background: '#fff' }}
+              >
+                {/* Image */}
+                <div style={{ height: '240px', overflow: 'hidden', background: CARD, position: 'relative' }} className="group">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.5s ease',
+                    }}
+                    className="group-hover:scale-105"
                   />
-
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                    <span className="text-sm font-dmSans font-semibold text-[#B8995A] mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {post.category}
-                    </span>
-                    <h3 className="text-2xl font-playfair font-bold mb-2 opacity-100 group-hover:opacity-100 transition-opacity">
-                      {post.title}
-                    </h3>
-                  </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Related Services */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-playfair font-bold text-[#5A6B54] mb-12 text-center">
-            Explore Our Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Weddings',
-                desc: 'From intimate ceremonies to grand celebrations',
-                link: '/weddings',
-              },
-              {
-                title: 'Specialty Events',
-                desc: 'DIY, venues, and Las Vegas Strip experiences',
-                link: '/specialty',
-              },
-              {
-                title: 'Classes & Workshops',
-                desc: 'Learn floral design from our expert instructors',
-                link: '/classes',
-              },
-            ].map((service, idx) => (
-              <Link href={service.link} key={idx}>
-                <div className="text-center p-6 rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                  <h3 className="text-2xl font-playfair font-bold text-[#5A6B54] mb-2">
-                    {service.title}
+                {/* Content */}
+                <div className="p-6">
+                  <h3 style={{ fontFamily: serif, fontSize: '1.2rem', fontWeight: 500, color: INK, marginBottom: '0.5rem' }}>
+                    {post.title}
                   </h3>
-                  <p className="text-gray-700 font-dmSans text-sm">{service.desc}</p>
+                  <p style={{ color: MUTED, fontSize: '0.88rem', lineHeight: 1.75, marginBottom: '1.5rem' }}>
+                    {post.excerpt}
+                  </p>
+                  <a
+                    href="#"
+                    style={{
+                      fontSize: '0.85rem',
+                      fontWeight: '600',
+                      color: SAGE,
+                      textDecoration: 'none',
+                      letterSpacing: '0.08em',
+                      transition: 'opacity 0.3s',
+                      opacity: 1,
+                    }}
+                    className="hover:opacity-70"
+                  >
+                    Read More →
+                  </a>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 px-4 bg-[#B8995A] text-center">
-        <h2 className="text-3xl font-playfair font-bold text-[#FAF8F3] mb-4">
-          Ready to Create Your Vision?
-        </h2>
-        <p className="text-[#FAF8F3]/90 font-dmSans mb-6 max-w-2xl mx-auto">
-          Book a free consultation to discuss your floral design ideas
-        </p>
-        <Link
-          href="/consultation"
-          className="inline-block px-8 py-3 bg-[#5A6B54] text-[#FAF8F3] rounded-sm font-dmSans font-semibold hover:bg-[#4a5a44] transition-colors"
-        >
-          Schedule Consultation
-        </Link>
+      {/* CTA */}
+      <section className="py-20" style={{ background: SAGE, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-2xl mx-auto px-5 text-center">
+          <p style={{ fontSize: '0.68rem', letterSpacing: '0.24em', color: GOLD_L, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Inspiration
+          </p>
+          <h2 style={{ fontFamily: serif, fontSize: '2rem', color: IVORY, marginBottom: '1rem' }}>
+            Get design ideas delivered.
+          </h2>
+          <p style={{ color: 'rgba(250,248,243,0.7)', fontSize: '0.95rem', marginBottom: '2rem' }}>
+            Follow Afuvai on Instagram for daily inspiration and behind-the-scenes design work.
+          </p>
+          <a
+            href="https://instagram.com/afuvaifloral"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '1rem 2rem',
+              background: IVORY,
+              color: SAGE,
+              textDecoration: 'none',
+              fontWeight: '600',
+              fontSize: '0.85rem',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              transition: 'opacity 0.3s',
+            }}
+            className="hover:opacity-85"
+          >
+            Follow Afuvai
+          </a>
+        </div>
       </section>
     </div>
   );

@@ -218,7 +218,7 @@ export function Nav() {
                         { label: "Subscriptions", href: "/subscriptions" },
                         { label: "Care Guide", href: "/care" },
                         { label: "Contact", href: "/florist" },
-                        { label: "admin@afuvai.com", href: "/florist" },
+                        { label: "hello@afuvai.com", href: "/florist" },
                       ].map(({ label, href: linkHref }) => (
                         <Link
                           key={label}
@@ -397,7 +397,7 @@ export function Nav() {
           </div>
           <div className="px-8 py-5 border-t" style={{ borderColor: "rgba(250,248,243,0.12)" }}>
             <p style={{ fontSize: "0.78rem", color: "rgba(250,248,243,0.5)", marginBottom: "0.75rem" }}>
-              admin@afuvai.com · Open daily 9am–5pm
+              hello@afuvai.com · Open daily 9am–5pm
             </p>
             <div className="flex gap-5">
               <a

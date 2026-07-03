@@ -16,7 +16,7 @@ export default function SubscriptionsPage() {
   const [frequency, setFrequency] = useState("Monthly");
 
   const handleSubscribe = (tierName: string) => {
-    toast.success(`${tierName} ${frequency} subscription — contact admin@afuvai.com to get started!`, { duration: 5000 });
+    toast.success(`${tierName} ${frequency} subscription — contact hello@afuvai.com to get started!`, { duration: 5000 });
   };
 
   return (
@@ -151,8 +151,8 @@ export default function SubscriptionsPage() {
           <h2 style={{ fontFamily: serif, fontSize: "1.8rem", color: INK, marginBottom: "1rem" }}>
             We&apos;re happy to help.
           </h2>
-          <a href="mailto:admin@afuvai.com" style={{ color: SAGE, fontSize: "0.97rem" }} className="hover:opacity-70 transition-opacity">
-            admin@afuvai.com →
+          <a href="mailto:hello@afuvai.com" style={{ color: SAGE, fontSize: "0.97rem" }} className="hover:opacity-70 transition-opacity">
+            hello@afuvai.com →
           </a>
         </div>
       </section>

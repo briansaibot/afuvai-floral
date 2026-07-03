@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionHead } from "@/app/components/SectionHead";
 import { FaqBlock } from "@/app/components/FaqBlock";
+import ConsultationCalendar from "@/app/components/ConsultationCalendar";
 import {
   BORDER, CARD, GOLD, GOLD_L, INK, IVORY, MUTED, SAGE, serif,
   FAQS_WEDDINGS, IMG_WILD_MEADOW, IMG_HEX_ARCH, IMG_METAL_ARCH, IMG_PURSE,
@@ -205,23 +206,34 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* Booking CTA */}
-      <section id="booking" className="py-20" style={{ background: CARD }}>
+      {/* Consultation Booking */}
+      <section id="booking" className="border-b" style={{ borderColor: BORDER }}>
+        <div className="max-w-3xl mx-auto px-5 md:px-8 py-20">
+          <div className="text-center mb-12">
+            <SectionHead label="Book Your Consultation" heading="30 minutes with AmiDayne" center />
+            <p style={{ color: MUTED, marginTop: "0.8rem", fontSize: "0.96rem" }}>
+              Discuss your wedding vision, timeline, and venue. Via Zoom or in Las Vegas.
+            </p>
+          </div>
+          <div className="bg-white border p-8 md:p-12" style={{ borderColor: BORDER }}>
+            <ConsultationCalendar />
+          </div>
+        </div>
+      </section>
+      
+      {/* Alternative Contact */}
+      <section className="py-16" style={{ background: CARD }}>
         <div className="max-w-2xl mx-auto px-5 md:px-8 text-center">
-          <SectionHead label="Book Your Wedding" heading="Start with a complimentary consultation" center />
-          <p style={{ color: MUTED, marginTop: "0.8rem", fontSize: "0.96rem", marginBottom: "2.5rem" }}>
-            Share your date and vision — we'll respond within 48 hours with availability and next steps.
+          <p style={{ color: MUTED, fontSize: "0.96rem", marginBottom: "1rem" }}>
+            Prefer to discuss details first?
           </p>
           <a
-            href="mailto:admin@afuvai.com?subject=Wedding%20Floral%20Inquiry"
-            className="inline-flex items-center gap-2 px-10 py-5 text-base font-semibold hover:opacity-85 transition-opacity"
+            href="mailto:hello@afuvai.com?subject=Wedding%20Floral%20Inquiry"
+            className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold hover:opacity-85 transition-opacity"
             style={{ background: SAGE, color: "#fff", letterSpacing: "0.1em" }}
           >
             Email AmiDayne <ArrowRight size={16} />
           </a>
-          <p style={{ color: MUTED, fontSize: "0.78rem", marginTop: "1.2rem" }}>
-            Minimum $1,500 · Las Vegas Valley · Book 6–12 months in advance
-          </p>
         </div>
       </section>
     </div>
