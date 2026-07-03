@@ -127,7 +127,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Image */}
-            <div className="relative h-80 order-2 md:order-1" style={{ background: CARD }}>
+            <div className="relative h-64 order-2 md:order-1" style={{ background: CARD }}>
               <Image
                 src={WORKSHOP_IMG}
                 alt="Floral design class with AmiDayne — Las Vegas"
@@ -139,15 +139,15 @@ export default function HomePage() {
 
             {/* Copy */}
             <div
-              className="flex flex-col justify-center px-8 md:px-14 py-14 order-1 md:order-2 border-b md:border-b-0 md:border-l"
+              className="flex flex-col justify-center px-8 md:px-12 py-10 order-1 md:order-2 border-b md:border-b-0 md:border-l"
               style={{ borderColor: BORDER }}
             >
               <div
-                className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 self-start border"
+                className="inline-flex items-center gap-2 mb-3 px-3 py-1 self-start border"
                 style={{ borderColor: BORDER_G, background: "rgba(184,153,90,0.08)" }}
               >
                 <span
-                  style={{ fontSize: "0.65rem", letterSpacing: "0.22em", color: GOLD, textTransform: "uppercase" }}
+                  style={{ fontSize: "0.62rem", letterSpacing: "0.2em", color: GOLD, textTransform: "uppercase" }}
                 >
                   Classes
                 </span>
@@ -155,26 +155,26 @@ export default function HomePage() {
               <h2
                 style={{
                   fontFamily: serif,
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
+                  fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                   fontWeight: 500,
                   color: INK,
                   lineHeight: 1.1,
-                  marginBottom: "1.2rem",
+                  marginBottom: "0.8rem",
                 }}
               >
                 Learn Floral<br />
                 <em style={{ color: GOLD, fontStyle: "italic" }}>Design</em>
               </h2>
-              <p style={{ color: MUTED, lineHeight: 1.85, fontSize: "1rem", marginBottom: "1.5rem", maxWidth: "420px" }}>
-                Public and private floral design classes in Las Vegas. All skill levels welcome. Leave with a finished arrangement and new techniques to impress at home.
+              <p style={{ color: MUTED, lineHeight: 1.75, fontSize: "0.9rem", marginBottom: "1rem", maxWidth: "420px" }}>
+                Public and private floral design classes in Las Vegas. All skill levels welcome. Leave with finished arrangements and new techniques.
               </p>
-              <p style={{ color: MUTED, lineHeight: 1.8, fontSize: "0.9rem", marginBottom: "2rem" }}>
-                <strong>Beginner</strong> • Seasonal Design • Advanced Arrangement • Private Group Sessions
+              <p style={{ color: MUTED, lineHeight: 1.6, fontSize: "0.8rem", marginBottom: "1.5rem" }}>
+                <strong>Beginner</strong> • Seasonal Design • Advanced • Private Sessions
               </p>
               <Link
                 href="/classes"
-                className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold hover:opacity-85 transition-opacity"
-                style={{ background: SAGE, color: "#fff", letterSpacing: "0.06em", width: "fit-content" }}
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold hover:opacity-85 transition-opacity uppercase"
+                style={{ background: SAGE, color: "#fff", letterSpacing: "0.08em", width: "fit-content" }}
               >
                 Explore Classes →
               </Link>
