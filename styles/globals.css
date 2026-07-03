@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --font-size: 17px;
+  --background: #faf8f3;
+  --foreground: #1a1a14;
+  --card: #eeeadc;
+  --card-foreground: #1a1a14;
+  --popover: #eeeadc;
+  --popover-foreground: #1a1a14;
+  --primary: #b8995a;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e4d8;
+  --secondary-foreground: #1a1a14;
+  --muted: #e8e4d8;
+  --muted-foreground: #6b6b58;
+  --accent: #5a6b54;
+  --accent-foreground: #ffffff;
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --border: rgba(90, 107, 84, 0.2);
+  --input: #e8e4d8;
+  --ring: #b8995a;
+  --radius: 0.625rem;
+  --sage: #5a6b54;
+  --sage-dark: #3f4e3a;
+  --gold: #b8995a;
+  --gold-light: #d4b578;
+  --ivory: #faf8f3;
+  --card-bg: #eeeadc;
+  --ink: #1a1a14;
+  --muted-text: #6b6b58;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Marquee animation for announcement bar */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+/* Fade/slide reveal animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -4,7 +4,9 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
-# Build output
+# Next.js build output
+.next/
+out/
 dist/
 build/
 
