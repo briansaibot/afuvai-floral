@@ -314,7 +314,6 @@ export const ADDONS = [
 export const PRIMARY_NAV = [
   { label: "Shop Collections", href: "/#collections" },
   { label: "Classes",          href: "/classes" },
-  { label: "Portfolio",        href: "/portfolio" },
   { label: "Weddings",         href: "/weddings" },
   { label: "Meet AmiDayne",    href: "/florist" },
 ];
@@ -332,10 +331,12 @@ export const DROPDOWN_NAV = [
   {
     section: "Explore",
     links: [
-      { label: "Subscriptions", href: "/subscriptions" },
-      { label: "Gift Cards",    href: "/gift-cards" },
-      { label: "Care Guide",    href: "/care" },
-      { label: "Portfolio",     href: "/portfolio" },
+      { label: "Specialty Services",  href: "/specialty" },
+      { label: "Design Inspiration",  href: "/journal" },
+      { label: "Care Guide",          href: "/care-tips" },
+      { label: "Free Consultation",   href: "/consultation" },
+      { label: "Subscriptions",       href: "/subscriptions" },
+      { label: "Gift Cards",          href: "/gift-cards" },
     ],
   },
 ];
@@ -343,14 +344,16 @@ export const DROPDOWN_NAV = [
 export const ALL_NAV_MOBILE = [
   { label: "Shop Collections",   href: "/#collections" },
   { label: "Classes",            href: "/classes" },
-  { label: "Portfolio",          href: "/portfolio" },
   { label: "Weddings",           href: "/weddings" },
   { label: "Host an Event",      href: "/parties" },
+  { label: "Specialty Services", href: "/specialty" },
+  { label: "Design Inspiration", href: "/journal" },
   { label: "Build Your Bouquet", href: "/quiz" },
   { label: "Gift Cards",         href: "/gift-cards" },
   { label: "Collaborate",        href: "/collabs" },
   { label: "Subscriptions",      href: "/subscriptions" },
   { label: "Bulk Orders",        href: "/bulk" },
   { label: "Meet AmiDayne",      href: "/florist" },
-  { label: "Care Guide",         href: "/care" },
+  { label: "Care Tips",          href: "/care-tips" },
+  { label: "Free Consultation",  href: "/consultation" },
 ];
