@@ -1,17 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { BORDER, CARD, GOLD, INK, IVORY, MUTED, SAGE, serif } from '@/lib/constants';
 
 type TimeSlot = '10am' | '2pm' | '4pm';
 
 const AVAILABLE_TIMES: TimeSlot[] = ['10am', '2pm', '4pm'];
+const GOOGLE_OAUTH_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID;
 
 export default function ConsultationCalendar() {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<TimeSlot | ''>('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   // Generate next 14 days, excluding Sundays
   const generateAvailableDates = () => {
@@ -36,32 +40,6 @@ export default function ConsultationCalendar() {
 
   const availableDates = generateAvailableDates();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!selectedDate || !selectedTime || !email || !name) {
-      alert('Please fill in all fields');
-      return;
-    }
-
-    // TODO: Send to email service
-    console.log({
-      name,
-      email,
-      date: selectedDate,
-      time: selectedTime,
-    });
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setName('');
-      setEmail('');
-      setSelectedDate('');
-      setSelectedTime('');
-    }, 3000);
-  };
-
   const formatDate = (dateStr: string) => {
     return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
       month: 'short',
@@ -70,22 +48,73 @@ export default function ConsultationCalendar() {
     });
   };
 
-  if (submitted) {
-    return (
-      <div className="text-center py-8">
-        <div className="text-5xl mb-4">✓</div>
-        <h3 className="text-2xl font-playfair font-bold text-[#5A6B54] mb-2">
-          Consultation Booked!
-        </h3>
-        <p className="text-gray-700 font-dmSans">
-          Check your email for confirmation and Zoom link details.
-        </p>
-      </div>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    if (!selectedDate || !selectedTime || !email || !name || !phone) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    // Validate email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    // Validate phone (basic check)
+    if (!/^[\d\s\-\+\(\)]+$/.test(phone) || phone.replace(/\D/g, '').length < 10) {
+      setError('Please enter a valid phone number');
+      return;
+    }
+
+    // Build Google OAuth flow parameters
+    const timeHour = selectedTime === '10am' ? '10' : selectedTime === '2pm' ? '14' : '16';
+    const dateTime = `${selectedDate}T${timeHour}:00:00`;
+
+    // Store booking data in session storage so we can send it after OAuth
+    sessionStorage.setItem(
+      'pendingBooking',
+      JSON.stringify({
+        name,
+        email,
+        phone,
+        dateTime,
+      })
     );
-  }
+
+    // Initiate OAuth flow
+    const oauthUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
+    oauthUrl.searchParams.append('client_id', GOOGLE_OAUTH_CLIENT_ID!);
+    oauthUrl.searchParams.append('redirect_uri', `${window.location.origin}/auth/callback`);
+    oauthUrl.searchParams.append('response_type', 'code');
+    oauthUrl.searchParams.append('scope', 'https://www.googleapis.com/auth/calendar.events');
+    oauthUrl.searchParams.append('access_type', 'offline');
+    oauthUrl.searchParams.append('prompt', 'consent');
+
+    setSubmitting(true);
+    window.location.href = oauthUrl.toString();
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Error message */}
+      {error && (
+        <div
+          style={{
+            padding: '1rem',
+            background: '#fee',
+            border: `1px solid #fcc`,
+            borderRadius: '4px',
+            color: '#c33',
+            fontSize: '0.9rem',
+          }}
+        >
+          {error}
+        </div>
+      )}
+
       {/* Name and Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
@@ -101,6 +130,18 @@ export default function ConsultationCalendar() {
           placeholder="Your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5A6B54]"
+          required
+        />
+      </div>
+
+      {/* Phone */}
+      <div>
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5A6B54]"
           required
         />
@@ -157,10 +198,15 @@ export default function ConsultationCalendar() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full py-3 px-4 bg-[#B8995A] text-white font-playfair font-bold rounded-lg hover:bg-[#A0835A] transition"
+        disabled={submitting}
+        className="w-full py-3 px-4 bg-[#B8995A] text-white font-playfair font-bold rounded-lg hover:bg-[#A0835A] transition disabled:opacity-50"
       >
-        Confirm Consultation
+        {submitting ? 'Redirecting...' : 'Confirm Consultation'}
       </button>
+
+      <p style={{ fontSize: '0.8rem', color: MUTED, textAlign: 'center' }}>
+        You'll be asked to authorize calendar access. We only create events on your behalf.
+      </p>
     </form>
   );
 }
