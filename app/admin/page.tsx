@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { monthlyMetrics, tierMetrics, productMetrics, operationalMetrics, revenueTrends } from '@/lib/analyticsData';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+'use client';
+
+import { useState } from 'react';
+
 export default function AdminDashboard() {
+  const [dateRange, setDateRange] = useState('mtd');
   const mtd = monthlyMetrics.mtd;
   const ytd = monthlyMetrics.ytd;
   const yoy = ((ytd.revenue - monthlyMetrics.lastYear.revenue) / monthlyMetrics.lastYear.revenue * 100).toFixed(1);
@@ -18,9 +23,39 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-          <p className="text-gray-600">Real-time business intelligence for AFUVAI Floral Society</p>
+        <div className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+            <p className="text-gray-600">Real-time business intelligence for AFUVAI Floral Society</p>
+          </div>
+          <div className="flex gap-2">
+            <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-medium text-sm">
+              🔔 Alerts (2)
+            </button>
+            <Link href="/admin/reports" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium text-sm">
+              📊 Reports
+            </Link>
+            <Link href="/admin/alerts" className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-medium text-sm">
+              ⚙️ Manage Alerts
+            </Link>
+          </div>
+        </div>
+
+        {/* Date Range Selector */}
+        <div className="flex gap-2 mb-8">
+          {['mtd', 'qtd', 'ytd', 'custom'].map(range => (
+            <button
+              key={range}
+              onClick={() => setDateRange(range)}
+              className={`px-4 py-2 rounded-lg transition text-sm font-medium ${
+                dateRange === range
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white border border-gray-200 text-gray-900 hover:border-gray-300'
+              }`}
+            >
+              {range === 'mtd' ? 'MTD' : range === 'qtd' ? 'QTD' : range === 'ytd' ? 'YTD' : 'Custom'}
+            </button>
+          ))}
         </div>
 
         {/* KPI Cards - Top Row */}
@@ -244,8 +279,8 @@ export default function AdminDashboard() {
 
         {/* Quick Navigation */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Detailed Analytics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Detailed Analytics & Tools</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
             <Link href="/admin/revenue" className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
               <h3 className="font-semibold text-gray-900 mb-1">📊 Revenue Analytics</h3>
               <p className="text-xs text-gray-600">MTD, YTD, forecasts & trends</p>
@@ -261,6 +296,14 @@ export default function AdminDashboard() {
             <Link href="/admin/operations" className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
               <h3 className="font-semibold text-gray-900 mb-1">⚙️ Operations</h3>
               <p className="text-xs text-gray-600">Delivery, auto-reorder & KPIs</p>
+            </Link>
+            <Link href="/admin/reports" className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+              <h3 className="font-semibold text-gray-900 mb-1">📋 Reports</h3>
+              <p className="text-xs text-gray-600">Export CSV/PDF & email</p>
+            </Link>
+            <Link href="/admin/alerts" className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+              <h3 className="font-semibold text-gray-900 mb-1">🔔 Alerts</h3>
+              <p className="text-xs text-gray-600">KPI rules & events</p>
             </Link>
           </div>
         </div>
