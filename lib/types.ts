@@ -1,90 +1,71 @@
-export type Page =
-  | "home"
-  | "portfolio"
-  | "weddings"
-  | "parties"
-  | "product"
-  | "subscriptions"
-  | "florist"
-  | "care"
-  | "bulk"
-  | "classes"
-  | "collabs"
-  | "gift-cards"
-  | "quiz"
-  | "account";
+export type Tier = 'whale' | 'vip' | 'standard' | 'untiered';
+export type DeliveryMethod = 'photo' | 'signature';
+export type OrderStatus = 'pending' | 'completed' | 'failed';
 
-export interface ProductSize {
-  label: string;
-  price: number;
+export interface Customer {
+  id: string;
+  email: string;
+  name: string;
+  phone?: string;
+  tier: Tier;
+  lifetime_value: number;
+  last_purchase_date?: string;
+  inactivity_flag_date?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
+  description?: string;
   price: number;
-  category: string;
-  img: string;
-  tag: string;
-  whiteBg?: boolean;
-  pairedProductId?: number;
-  desc: string;
-  sizes: ProductSize[];
+  allow_auto_reorder: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  qty: number;
-  img: string;
-  size: string;
+export interface Order {
+  id: string;
+  stripe_payment_intent_id?: string;
+  customer_id: string;
+  total_amount: number;
+  delivery_fee: number;
+  tax: number;
+  delivery_method: DeliveryMethod;
+  signature_required: boolean;
+  status: OrderStatus;
+  auto_marked_complete: boolean;
+  delivery_address?: string;
+  delivery_date?: string;
+  delivery_time_slot?: string;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface SubTier {
-  name: string;
-  img: string;
-  badge: string;
-  price: Record<string, number>;
-  items: string[];
+export interface OrderItem {
+  id: string;
+  order_id: string;
+  product_id: string;
+  quantity: number;
+  price_at_purchase: number;
+  created_at: string;
 }
 
-export interface PortfolioItem {
-  id: number;
-  img: string;
-  category: string;
-  title: string;
-  venue: string;
-  whiteBg?: boolean;
+export interface CustomerTier {
+  id: string;
+  customer_id: string;
+  product_id: string;
+  tier: Tier;
+  lifetime_spend_on_stem: number;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface PartyExperience {
-  name: string;
-  price: string;
-  group: string;
-  duration: string;
-  symbol: string;
-  desc: string;
-  img: string;
-}
-
-export interface FaqItem {
-  q: string;
-  a: string;
-}
-
-export interface Testimonial {
-  name: string;
-  city: string;
-  rating: number;
-  text: string;
-}
-
-export interface Class {
-  name: string;
-  price: number;
-  duration: string;
-  group: string;
-  img: string;
-  desc: string;
+export interface AutoReorderItem {
+  id: string;
+  product_id: string;
+  approved_by_admin: boolean;
+  created_at: string;
+  updated_at: string;
 }
