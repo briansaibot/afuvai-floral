@@ -2,64 +2,73 @@
 
 ## ✅ COMPLETED
 - ✅ Google Cloud project created (afuvai-booking)
-- ✅ OAuth consent screen configured
-- ✅ OAuth 2.0 Client ID created
-- ✅ Client ID: `207908055162-809f0ogctdtj7g4t44nt77af88dhfbl3.apps.googleusercontent.com`
+- ✅ OAuth 2.0 Client ID created (v2)
+- ✅ Client ID: `207908055162-1rtrsp8i94nndf5jlp2p1no7hdrrhiq.apps.googleusercontent.com`
+- ✅ Client Secret: You have it (from the popup)
 - ✅ Frontend OAuth flow implemented
 - ✅ API route created for token exchange
+- ✅ Redirect URIs configured correctly
 
 ---
 
-## 📋 REMAINING SETUP (You need to do these)
+## 📋 REMAINING SETUP (What You Do Next)
 
-### 1. **Get Google OAuth Client Secret**
+### 1. **Client Secret** ✅ DONE
+You already have this from the Google Cloud popup:
+- **Save this safely:** The long string starting with `GOCSPX-...`
+- You'll paste it into Netlify in step 3
 
-**In Google Cloud Console:**
-1. Go to APIs & Services → Credentials
-2. Find the OAuth 2.0 Client ID: `AFUVAI Booking Widget`
-3. Click on it
-4. Copy the **Client Secret** (blue button, shows `••••••••`)
-5. Paste it here: `GOOGLE_OAUTH_CLIENT_SECRET=`
+### 2. **Create Google Calendar for Bookings** (5 min)
 
-### 2. **Create Google Calendar for Bookings**
+**Go to Google Calendar (calendar.google.com):**
 
-**Steps:**
-1. Go to Google Calendar (calendar.google.com)
-2. Create a new calendar:
+1. On the left sidebar, click **"+ Create"** (or the **+** button)
+2. Select **"Create new calendar"**
+3. Fill in:
    - Name: `AFUVAI Consultations`
-   - Description: `Booking calendar for AFUVAI consultation scheduling`
-3. Once created, find the Calendar ID (Settings → Calendar details)
-   - Format looks like: `abc123@group.calendar.google.com`
-4. Copy the Calendar ID: `GOOGLE_CALENDAR_ID=`
+   - Description: `Booking calendar for consultation scheduling`
+   - Leave timezone as-is
+4. Click **"Create calendar"**
+5. The calendar will appear in your list
 
-**Share with service account:**
-1. In Google Calendar settings for this calendar, click "Share with others"
-2. Add the service account email: `afuvai-booking-widget@afuvai-booking.iam.gserviceaccount.com`
-3. Give it "Edit" permissions
+**Now get the Calendar ID:**
+1. On the left, right-click on `AFUVAI Consultations`
+2. Select **"Settings"**
+3. Scroll down to **"Integrate calendar"** section
+4. You'll see: **Calendar ID** (looks like: `abc123@group.calendar.google.com`)
+5. **Copy this Calendar ID** and save it
 
-### 3. **Set Netlify Environment Variables**
+**Share with service account (so AFUVAI can create events):**
+1. In Settings, scroll to **"Share with others"**
+2. Click **"Add people and groups"**
+3. Paste: `afuvai-booking-widget@afuvai-booking.iam.gserviceaccount.com`
+4. Give it **"Edit"** permissions
+5. Click **"Share"**
+
+### 3. **Set Netlify Environment Variables** (3 min)
 
 **In Netlify Dashboard:**
-1. Go to Site Settings → Build & Deploy → Environment
-2. Add these 3 variables:
-   ```
-   GOOGLE_OAUTH_CLIENT_SECRET = [paste from step 1]
-   GOOGLE_CALENDAR_ID = [paste from step 2]
-   MAILCHIMP_API_KEY = [existing key, or add if missing]
-   NEXT_PUBLIC_SITE_URL = https://afuvai.com
-   ```
+1. Go to your site
+2. Site Settings (top menu)
+3. Build & Deploy → **Environment**
+4. Click **"Edit variables"**
+5. Add these 4 variables (one per line):
 
-3. **Redeploy site** (any commit to `main` will trigger rebuild with new env vars)
+```
+GOOGLE_OAUTH_CLIENT_SECRET = [paste the long secret from Google popup]
+GOOGLE_CALENDAR_ID = [paste from Google Calendar settings]
+MAILCHIMP_API_KEY = [your existing key, or skip if you don't have it]
+NEXT_PUBLIC_SITE_URL = https://afuvai.com
+```
 
-### 4. **Verify Redirect URIs are Correct**
+6. Click **"Save"**
+7. **Redeploy** (go to Deploys → Trigger deploy → Deploy site)
 
-**In Google Cloud Console:**
-1. APIs & Services → Credentials
-2. Click `AFUVAI Booking Widget` OAuth Client
-3. Confirm these redirect URIs exist:
-   - `http://localhost:3000/auth/callback` (dev)
-   - `https://afuvai.com/auth/callback` (production)
-   - `https://www.afuvai.com/auth/callback` (production with www)
+### 4. **Verify Everything** ✅ Already Done
+Redirect URIs are already correct:
+- ✅ http://localhost:3000/auth/callback
+- ✅ https://afuvai.com/auth/callback
+- ✅ https://www.afuvai.com/auth/callback
 
 ---
 
@@ -70,17 +79,17 @@
 2. Fill in name, email, phone, select date/time
 3. Click "Confirm Consultation"
 4. Should redirect to Google consent screen
-5. Grant permissions
+5. Grant permissions to "Create events on your calendar"
 6. Should redirect back to http://localhost:3000/auth/callback
 7. Should show success message
-8. Check Google Calendar for the new event
+8. Check Google Calendar (`AFUVAI Consultations`) for the new event
 
-### Production Testing:
+### Production Testing (after Netlify deploys):
 1. Go to https://afuvai.com/consultation
 2. Same flow as above
 3. Should redirect to https://afuvai.com/auth/callback
 4. Check Google Calendar for the new event
-5. Check email (hello@afuvai.com should have confirmation)
+5. Check email (confirmation sent to the email you entered)
 
 ---
 
@@ -113,7 +122,7 @@
 
 - ✅ OAuth Client ID is public (safe in frontend code)
 - ✅ Client Secret stored ONLY in Netlify environment (never in code)
-- ✅ Access tokens are ephemeral (valid for ~1 hour)
+- ✅ Access tokens are ephemeral (~1 hour)
 - ✅ Booking data validated on backend before creating event
 - ✅ No personal data stored in browser beyond session storage
 - ✅ Session storage cleared after booking completes
@@ -129,6 +138,7 @@
 ### "Calendar event creation failed"
 - Check GOOGLE_CALENDAR_ID env var is correct
 - Verify service account has Edit permissions on calendar
+- Check calendar exists and is accessible
 
 ### "Email send failed"
 - MAILCHIMP_API_KEY might be missing or invalid
@@ -148,22 +158,22 @@
 - `app/auth/callback/AuthCallbackClient.tsx` — Client component for OAuth handling
 - `app/api/booking/exchange-code/route.ts` — Token exchange and event creation
 - `.env.example` — Environment variable template
+- `docs/OAUTH_SETUP.md` — This file
 
 ---
 
-## ✅ When Setup is Complete
+## ✅ Quick Checklist
 
-Once you've completed steps 1-4:
-
-1. **Test locally**
-2. **Commit any changes**
-3. **Netlify redeploys automatically**
-4. **Test on production (https://afuvai.com/consultation)**
-5. **Booking flow is live!**
+- [ ] 1. Client Secret saved (you have it)
+- [ ] 2. Google Calendar created (`AFUVAI Consultations`)
+- [ ] 3. Calendar ID copied from Calendar settings
+- [ ] 4. Service account shared with calendar (Edit permission)
+- [ ] 5. Netlify env vars set (4 variables)
+- [ ] 6. Netlify site redeployed
+- [ ] 7. Test on https://afuvai.com/consultation
+- [ ] 8. Verify event appears in Google Calendar
+- [ ] 9. Check email for confirmation
 
 ---
 
-**Questions?** Check the code comments in:
-- `app/components/ConsultationCalendar.tsx` — How OAuth is initiated
-- `app/api/booking/exchange-code/route.ts` — How token is exchanged and event created
-- `app/auth/callback/AuthCallbackClient.tsx` — How callback is handled
+**Once all steps are complete, the booking flow is LIVE!** 🎉
