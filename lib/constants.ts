@@ -258,9 +258,9 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const SUB_FREQUENCIES = ["Weekly", "Bi-Weekly", "Monthly"];
 export const SUB_TIERS: SubTier[] = [
-  { name: "Ivory",  img: IMG_GARDEN_SUNRISE, badge: "",             price: { Weekly: 65,  "Bi-Weekly": 55,  Monthly: 45  }, items: ["One seasonal arrangement", "Hand-wrapped with ribbon", "Personal note card", "Free delivery"] },
-  { name: "Sage",   img: IMG_SUMMER_RADIANCE, badge: "Most Popular", price: { Weekly: 135, "Bi-Weekly": 115, Monthly: 90  }, items: ["Two signature arrangements", "Designer-curated selection", "Vase included", "Priority same-day LV delivery", "Occasion reminders"] },
-  { name: "Gold",   img: IMG_GOLDEN_HOUR,    badge: "Best Value",   price: { Weekly: 280, "Bi-Weekly": 240, Monthly: 195 }, items: ["Four bespoke arrangements", "Dedicated design concierge", "Weekly refresh option", "Vases included", "20% off all events & parties", "First access to limited collections"] },
+  { name: "Sage",   img: IMG_SUMMER_RADIANCE, badge: "Monthly",      price: { Monthly: 95  }, items: ["Two premium seasonal arrangements", "Designer-curated selection", "Vase included", "Same-day delivery across LV Valley", "Occasion reminders"] },
+  { name: "Gold",   img: IMG_GOLDEN_HOUR,    badge: "Bi-Weekly",   price: { "Bi-Weekly": 180 }, items: ["Four bespoke premium arrangements", "Garden roses & specialty stems", "Dedicated design attention", "Vases included", "Priority same-day LV delivery", "20% off all events & parties"] },
+  { name: "Ivory",  img: IMG_GARDEN_SUNRISE, badge: "Weekly",       price: { Weekly: 360  }, items: ["Four premium bespoke arrangements weekly", "Premium garden roses + specialty stems", "Dedicated design concierge", "Vases included", "Guaranteed same-day LV delivery", "25% off all events & parties", "First access to limited collections"] },
 ];
 
 export const PARTY_EXPERIENCES: PartyExperience[] = [
