@@ -4,19 +4,19 @@ import { useEffect, useState } from 'react';
 
 interface Order {
   id: string;
-  stripe_payment_intent_id: string;
+  stripe_payment_intent_id?: string;
   customer_id: string;
   total_amount: number;
   delivery_method: 'photo' | 'signature';
   status: string;
   auto_marked_complete: boolean;
   created_at: string;
-  customers: {
+  customers?: {
     email: string;
     name: string;
     tier: string;
     lifetime_value: number;
-  };
+  } | null;
 }
 
 export default function AdminOrdersPage() {
@@ -115,17 +115,19 @@ export default function AdminOrdersPage() {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
+              {orders.map(order => {
+                const customer = order.customers || { name: 'Unknown', email: 'N/A', tier: 'standard' };
+                return (
                 <tr key={order.id} className="border-b hover:bg-gray-50">
                   <td className="px-4 py-3">
                     <div>
-                      <p className="font-medium">{order.customers.name}</p>
-                      <p className="text-xs text-gray-600">{order.customers.email}</p>
+                      <p className="font-medium">{customer.name}</p>
+                      <p className="text-xs text-gray-600">{customer.email}</p>
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${getTierColor(order.customers.tier)}`}>
-                      {order.customers.tier.toUpperCase()}
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${getTierColor(customer.tier)}`}>
+                      {customer.tier.toUpperCase()}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right font-medium">
@@ -156,7 +158,9 @@ export default function AdminOrdersPage() {
                     {new Date(order.created_at).toLocaleDateString()}
                   </td>
                 </tr>
-              ))}
+              );
+              })
+              }
             </tbody>
           </table>
         </div>

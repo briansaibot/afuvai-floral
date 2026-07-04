@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+import { mockOrders, mockCustomers } from '@/lib/mockData';
 
 export async function GET(req: NextRequest) {
   try {
@@ -12,30 +7,26 @@ export async function GET(req: NextRequest) {
     const status = searchParams.get('status');
     const tier = searchParams.get('tier');
 
-    let query = supabase
-      .from('orders')
-      .select(`
-        *,
-        customers:customer_id (id, email, name, tier, lifetime_value),
-        order_items (id, quantity, product_id, price_at_purchase)
-      `)
-      .order('created_at', { ascending: false });
+    // Merge orders with customer data
+    let results = mockOrders.map(order => ({
+      ...order,
+      customers: mockCustomers.find(c => c.id === order.customer_id),
+    }));
 
+    // Filter by status
     if (status) {
-      query = query.eq('status', status);
+      results = results.filter(order => order.status === status);
     }
 
+    // Filter by tier
     if (tier) {
-      query = query.eq('customers.tier', tier);
+      results = results.filter(order => order.customers?.tier === tier);
     }
 
-    const orders = await query;
+    // Sort by created_at descending
+    results.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-    if (orders.error) {
-      return NextResponse.json({ error: orders.error.message }, { status: 500 });
-    }
-
-    return NextResponse.json(orders.data);
+    return NextResponse.json(results);
   } catch (error) {
     console.error('Error fetching orders:', error);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });

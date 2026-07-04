@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+import { mockProducts } from '@/lib/mockData';
 
 export async function PATCH(
   req: NextRequest,
@@ -14,23 +9,20 @@ export async function PATCH(
     const body = await req.json();
     const { allow_auto_reorder, name, description, price } = body;
 
-    const product = await supabase
-      .from('products')
-      .update({
-        ...(allow_auto_reorder !== undefined && { allow_auto_reorder }),
-        ...(name && { name }),
-        ...(description && { description }),
-        ...(price && { price }),
-      })
-      .eq('id', params.id)
-      .select()
-      .single();
-
-    if (product.error) {
-      return NextResponse.json({ error: product.error.message }, { status: 500 });
+    // Mock: find and update product
+    const product = mockProducts.find(p => p.id === params.id);
+    if (!product) {
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
-    return NextResponse.json(product.data);
+    // Update mock product
+    if (allow_auto_reorder !== undefined) product.allow_auto_reorder = allow_auto_reorder;
+    if (name) product.name = name;
+    if (description) product.description = description;
+    if (price) product.price = price;
+    product.updated_at = new Date().toISOString();
+
+    return NextResponse.json(product);
   } catch (error) {
     console.error('Error updating product:', error);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });

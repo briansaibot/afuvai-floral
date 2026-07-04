@@ -1,23 +1,12 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+import { mockProducts } from '@/lib/mockData';
 
 export async function GET(req: NextRequest) {
   try {
-    const products = await supabase
-      .from('products')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (products.error) {
-      return NextResponse.json({ error: products.error.message }, { status: 500 });
-    }
-
-    return NextResponse.json(products.data);
+    const sorted = [...mockProducts].sort(
+      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+    return NextResponse.json(sorted);
   } catch (error) {
     console.error('Error fetching products:', error);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });
@@ -36,22 +25,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const product = await supabase
-      .from('products')
-      .insert({
-        name,
-        description,
-        price,
-        allow_auto_reorder: allow_auto_reorder || false,
-      })
-      .select()
-      .single();
+    // Mock: just return the created product (not persisted)
+    const newProduct = {
+      id: `product-${Date.now()}`,
+      name,
+      description,
+      price,
+      allow_auto_reorder: allow_auto_reorder || false,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
 
-    if (product.error) {
-      return NextResponse.json({ error: product.error.message }, { status: 500 });
-    }
-
-    return NextResponse.json(product.data, { status: 201 });
+    return NextResponse.json(newProduct, { status: 201 });
   } catch (error) {
     console.error('Error creating product:', error);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });

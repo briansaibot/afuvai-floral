@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: afuvai_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  supabase:
+    image: supabase/supabase:latest
+    container_name: afuvai_supabase
+    ports:
+      - "3001:3000"
+      - "5432:5432"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      JWT_SECRET: super-secret-jwt-token-with-at-least-32-characters-long
+      ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvY2FsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2MzAwMDAwMDAsImV4cCI6MTk5OTk5OTk5OX0.CRXP3sSgf1jcgLQmXPWLjsVgY0-Ky7pv5v6N4LvJe6o
+      SERVICE_ROLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvY2FsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTYzMDAwMDAwMCwiZXhwIjoxOTk5OTk5OTk5fQ.EGIM96RAZeIozChLkx3K0Qt8Tb4t7Z1find7JPcNyWXGEAQbj-Hs-rvz32-tfuy19XI5FC7-fw6xWQRCwK1Qw
+
+volumes:
+  postgres_data:
