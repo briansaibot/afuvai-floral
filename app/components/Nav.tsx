@@ -337,22 +337,23 @@ export function Nav() {
             </button>
           </div>
           <div className="flex-1 overflow-y-auto px-8 py-4">
-            <div className="mb-4">
-              {ALL_NAV_MOBILE.slice(0, 5).map(({ label, href }, i) => (
+            {/* Primary Navigation */}
+            <div className="mb-6 pb-6 border-b" style={{ borderColor: "rgba(250,248,243,0.12)" }}>
+              {PRIMARY_NAV.map(({ label, href }, i) => (
                 <Link
                   key={label}
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className="block py-3 border-b"
+                  className="block py-4 border-b"
                   style={{
                     fontFamily: serif,
-                    fontSize: "1.55rem",
+                    fontSize: "1.8rem",
                     color: IVORY,
-                    borderColor: "rgba(250,248,243,0.1)",
+                    borderColor: "rgba(250,248,243,0.08)",
                     animationName: "fadeSlideIn",
                     animationDuration: "0.38s",
                     animationTimingFunction: "ease",
-                    animationDelay: `${i * 0.05}s`,
+                    animationDelay: `${i * 0.06}s`,
                     animationFillMode: "both",
                   }}
                 >
@@ -360,38 +361,59 @@ export function Nav() {
                 </Link>
               ))}
             </div>
-            <div className="pt-4">
+
+            {/* Explore / Dropdown Navigation */}
+            <div>
               <p
                 style={{
                   fontSize: "0.6rem",
                   letterSpacing: "0.24em",
                   color: GOLD_L,
                   textTransform: "uppercase",
-                  marginBottom: "0.75rem",
+                  marginBottom: "1rem",
+                  fontWeight: 600,
                 }}
               >
-                More
+                Explore
               </p>
-              {ALL_NAV_MOBILE.slice(5).map(({ label, href }, i) => (
-                <Link
-                  key={label}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2.5 border-b"
-                  style={{
-                    fontSize: "1rem",
-                    color: "rgba(250,248,243,0.75)",
-                    borderColor: "rgba(250,248,243,0.08)",
-                    fontFamily: sans,
-                    animationName: "fadeSlideIn",
-                    animationDuration: "0.38s",
-                    animationTimingFunction: "ease",
-                    animationDelay: `${(i + 5) * 0.04}s`,
-                    animationFillMode: "both",
-                  }}
-                >
-                  {label}
-                </Link>
+              {DROPDOWN_NAV.map((section) => (
+                <div key={section.section} className="mb-6">
+                  <p
+                    style={{
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.12em",
+                      color: "rgba(250,248,243,0.6)",
+                      textTransform: "uppercase",
+                      marginBottom: "0.5rem",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {section.section}
+                  </p>
+                  {section.links.map(({ label, href }, i) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block py-2.5 px-2"
+                      style={{
+                        fontSize: "0.95rem",
+                        color: "rgba(250,248,243,0.8)",
+                        borderRadius: "4px",
+                        fontFamily: sans,
+                        animationName: "fadeSlideIn",
+                        animationDuration: "0.35s",
+                        animationTimingFunction: "ease",
+                        animationDelay: `${(i + 4) * 0.03}s`,
+                        animationFillMode: "both",
+                      }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(250,248,243,0.08)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
