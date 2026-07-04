@@ -1,12 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { monthlyMetrics, tierMetrics, productMetrics, operationalMetrics, revenueTrends } from '@/lib/analyticsData';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
+import { monthlyMetrics, tierMetrics, productMetrics, operationalMetrics, revenueTrends } from '@/lib/analyticsData';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function AdminDashboard() {
   const [dateRange, setDateRange] = useState('mtd');
