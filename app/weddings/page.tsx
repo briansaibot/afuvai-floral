@@ -65,7 +65,10 @@ export default function WeddingsPage() {
             />
             <div>
               <p style={{ color: MUTED, lineHeight: 1.9, fontSize: "1rem", marginBottom: "1.25rem" }}>
-                AmiDayne has designed weddings for intimate ceremonies of 20 and grand receptions of 500+. Every wedding begins with a complimentary consultation — a conversation about your vision, venue, color palette, and the feeling you want guests to carry with them after the last dance.
+                AmiDayne Nelsen brings 40 years of family floral expertise to every AFUVAI wedding. Her craft is rooted in Wizard's Flower Magic (Lovelock, Nevada), a multi-generational family business known for high-end event and wedding florals.
+              </p>
+              <p style={{ color: MUTED, lineHeight: 1.9, fontSize: "1rem", marginBottom: "1.25rem" }}>
+                From intimate ceremonies of 20 to grand receptions of 500+, every wedding is designed with precision and care. Every wedding begins with a complimentary consultation — a conversation about your vision, venue, color palette, and the feeling you want guests to carry with them after the last dance.
               </p>
               <p style={{ color: MUTED, lineHeight: 1.9, fontSize: "1rem", marginBottom: "2rem" }}>
                 We handle everything: sourcing, design, delivery, setup, and teardown. You arrive to a fully dressed venue — not a box of supplies.
@@ -121,10 +124,10 @@ export default function WeddingsPage() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { value: "200+", label: "Weddings Designed" },
+              { value: "40+", label: "Years Experience" },
               { value: "$1,500",   label: "Starting From" },
-              { value: "6+",  label: "Years in Las Vegas" },
-              { value: "5★",  label: "Average Rating" },
+              { value: "Wizard's",  label: "Flower Magic" },
+              { value: "Las Vegas & Beyond",  label: "Service Area" },
             ].map((stat, i) => (
               <div
                 key={stat.label}

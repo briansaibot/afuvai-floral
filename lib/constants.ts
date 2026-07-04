@@ -295,6 +295,8 @@ export const FAQS_WEDDINGS: FaqItem[] = [
   { q: "What is included in a consultation?",  a: "Your complimentary consultation includes a vision discussion, venue review, color palette planning, and a custom proposal delivered within 5 business days." },
   { q: "Can we see samples before booking?",   a: "Yes. For full-service clients, we offer a paid sample session where we create mini versions of your planned arrangements for your approval." },
   { q: "What is your minimum for weddings?",   a: "Our wedding minimum is $1,500. Most full-service weddings range from $3,000–$15,000+ depending on scope, guest count, and design complexity." },
+  { q: "Are you available for destination events?", a: "Yes. We've designed weddings and events throughout Nevada and can coordinate with venues outside Las Vegas. Travel arrangements and fees are discussed during consultation." },
+  { q: "Do you handle setup and teardown?",   a: "Absolutely. Full-service includes all delivery, on-site setup before your ceremony, and post-event breakdown. You never see a stem out of place." },
 ];
 
 export const BULK_FLOWERS = [
@@ -432,6 +434,7 @@ export const DROPDOWN_NAV = [
       { label: "Specialty Services",  href: "/specialty" },
       { label: "Design Inspiration",  href: "/journal" },
       { label: "Care Guide",          href: "/care-tips" },
+      { label: "FAQ",                 href: "/faq" },
       { label: "Free Consultation",   href: "/consultation" },
       { label: "Portfolio",           href: "/portfolio" },
       { label: "Subscriptions",       href: "/subscriptions" },
@@ -454,5 +457,6 @@ export const ALL_NAV_MOBILE = [
   { label: "Bulk Orders",        href: "/bulk" },
   { label: "Meet AmiDayne",      href: "/florist" },
   { label: "Care Tips",          href: "/care-tips" },
+  { label: "FAQ",                href: "/faq" },
   { label: "Free Consultation",  href: "/consultation" },
 ];
