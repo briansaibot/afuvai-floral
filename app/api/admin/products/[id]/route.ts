@@ -3,14 +3,15 @@ import { mockProducts } from '@/lib/mockData';
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await req.json();
     const { allow_auto_reorder, name, description, price } = body;
 
     // Mock: find and update product
-    const product = mockProducts.find(p => p.id === params.id);
+    const product = mockProducts.find(p => p.id === id);
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }

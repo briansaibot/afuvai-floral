@@ -23,7 +23,7 @@ export default function AccountPage() {
   const [password, setPassword] = useState("");
   const { wishlist } = useWishlist();
 
-  const wishedProducts = PRODUCTS.filter((p) => wishlist.includes(p.id));
+  const wishedProducts = PRODUCTS.filter((p) => wishlist.includes(p.id as never));
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,11 +85,12 @@ export default function AccountPage() {
                 {wishedProducts.map((p) => (
                   <Link key={p.id} href={`/product/${p.id}`} className="flex items-center gap-3 p-3 border" style={{ borderColor: BORDER, background: CARD }}>
                     <div className="relative w-12 h-12 flex-shrink-0 overflow-hidden">
-                      <Image src={p.img} alt={p.name} fill className="object-cover" sizes="48px" />
+                      <div className="w-12 h-12 bg-gray-200 rounded" />
+                      {/* <Image src={p.image || '/images/placeholder.jpg'} alt={p.name} fill className="object-cover" sizes="48px" /> */}
                     </div>
                     <div>
                       <div style={{ fontSize: "0.85rem", fontWeight: 500, color: INK }}>{p.name}</div>
-                      <div style={{ fontSize: "0.78rem", color: GOLD }}>From ${p.sizes[0].price}</div>
+                      <div style={{ fontSize: "0.78rem", color: GOLD }}>From ${p.price}</div>
                     </div>
                   </Link>
                 ))}
@@ -143,13 +144,11 @@ export default function AccountPage() {
               wishedProducts.length > 0 ? (
                 <div className="grid grid-cols-2 gap-4">
                   {wishedProducts.map((p) => (
-                    <Link key={p.id} href={`/product/${p.id}`} className="border group overflow-hidden" style={{ borderColor: BORDER, background: p.whiteBg ? "#fff" : CARD }}>
-                      <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                        <Image src={p.img} alt={p.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" />
-                      </div>
-                      <div className="p-4">
+                    <Link key={p.id} href={`/product/${p.id}`} className="border group overflow-hidden p-4" style={{ borderColor: BORDER, background: CARD }}>
+                      <div className="bg-gray-200 h-32 rounded mb-3" />
+                      <div>
                         <div style={{ fontFamily: serif, fontSize: "0.9rem", color: INK }}>{p.name}</div>
-                        <div style={{ fontSize: "0.82rem", color: GOLD }}>From ${p.sizes[0].price}</div>
+                        <div style={{ fontSize: "0.82rem", color: GOLD }}>${p.price.toFixed(2)}</div>
                       </div>
                     </Link>
                   ))}

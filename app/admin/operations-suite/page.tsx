@@ -68,7 +68,7 @@ export default function OperationsSuite() {
               <div className="border border-gray-200 rounded-lg p-4">
                 <h3 className="font-semibold text-gray-900 mb-3">✓ VIP Tier</h3>
                 <div className="space-y-2 text-sm text-gray-600">
-                  <p>• Free delivery on orders >$150</p>
+                  <p>• Free delivery on orders &gt;$150</p>
                   <p>• Auto-reorder orders (recurring)</p>
                   <p>• Seasonal promotions (Valentine's, Mother's Day)</p>
                   <button className="mt-3 px-3 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold hover:bg-green-200">
