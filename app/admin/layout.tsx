@@ -27,9 +27,17 @@ export default function AdminLayout({
     setLoading(false);
   }, [router]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem('adminSession');
     localStorage.removeItem('adminUser');
+
+    // Clear session cookie via API
+    try {
+      await fetch('/api/admin/auth/logout', { method: 'POST' });
+    } catch (e) {
+      console.error('Logout error:', e);
+    }
+
     router.push('/admin/login');
   };
 

@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
       return;
     }
 
-    // Create session and store in localStorage
+    // Create session and store in localStorage + send to API to set cookie
     const session = createSession(admin);
     localStorage.setItem('adminSession', JSON.stringify(session));
     localStorage.setItem('adminUser', JSON.stringify({
@@ -52,6 +52,17 @@ export default function AdminLoginPage() {
       displayName: admin.displayName,
       role: admin.role,
     }));
+
+    // Also set httpOnly cookie via API route
+    try {
+      await fetch('/api/admin/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session }),
+      });
+    } catch (e) {
+      console.error('Failed to set session cookie:', e);
+    }
 
     // Redirect to dashboard
     router.push('/admin');
