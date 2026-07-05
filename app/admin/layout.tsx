@@ -19,10 +19,10 @@ export default function AdminLayout({
       try {
         setUser(JSON.parse(userStr));
       } catch (e) {
-        router.push('/admin/login');
+        router.push('/login');
       }
     } else {
-      router.push('/admin/login');
+      router.push('/login');
     }
     setLoading(false);
   }, [router]);
@@ -48,6 +48,9 @@ export default function AdminLayout({
       </div>
     );
   }
+
+
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}

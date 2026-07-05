@@ -3,12 +3,17 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Allow access to login page without session
+  // Redirect /admin/login to /login
   if (pathname === '/admin/login') {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Allow access to login page without session
+  if (pathname === '/login') {
     return NextResponse.next();
   }
 
-  // Protect all other /admin routes
+  // Protect all /admin routes
   if (pathname.startsWith('/admin')) {
     const session = request.cookies.get('adminSession')?.value;
 
@@ -38,5 +43,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/login'],
 };
