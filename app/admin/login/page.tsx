@@ -57,6 +57,11 @@ export default function AdminLoginPage() {
     router.push('/admin');
   };
 
+  const handleQuickLogin = (u: string, p: string) => {
+    setUsername(u);
+    setPin(p);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center px-6">
       <div className="w-full max-w-md">
@@ -103,18 +108,22 @@ export default function AdminLoginPage() {
                 maxLength={4}
                 className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:outline-none focus:border-amber-600 transition text-2xl tracking-widest text-center"
               />
-              <button
-                type="button"
-                onClick={() => setShowPinHint(!showPinHint)}
-                className="text-xs text-amber-500 hover:text-amber-400 mt-1 transition"
-              >
-                {showPinHint ? '◯ Hide hint' : '◯ Need help?'}
-              </button>
-              {showPinHint && (
-                <p className="text-xs text-gray-500 mt-2 p-2 bg-gray-700 rounded">
-                  💡 Demo credentials: Ami (0599) or Brian (5503)
-                </p>
-              )}
+              <div className="flex gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('AmiDayne', '0599')}
+                  className="flex-1 px-3 py-1 text-xs bg-gray-700 hover:bg-amber-700 text-white rounded transition"
+                >
+                  Quick: Ami
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('Brian', '5503')}
+                  className="flex-1 px-3 py-1 text-xs bg-gray-700 hover:bg-amber-700 text-white rounded transition"
+                >
+                  Quick: Brian
+                </button>
+              </div>
             </div>
 
             {/* Error Message */}
@@ -134,11 +143,14 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          {/* Info Box */}
-          <div className="mt-6 p-4 bg-gray-700 rounded border border-gray-600">
-            <p className="text-xs text-gray-300">
-              <strong>Demo Access:</strong> Use one of the demo admin accounts to explore the system.
-            </p>
+          {/* Demo Credentials Box */}
+          <div className="mt-6 p-4 bg-amber-900/20 rounded border border-amber-700/30">
+            <p className="text-xs font-semibold text-amber-200 mb-2">📋 Demo Credentials:</p>
+            <div className="space-y-1 text-xs text-amber-100 font-mono">
+              <p><strong>Username:</strong> AmiDayne | <strong>PIN:</strong> 0599</p>
+              <p><strong>Username:</strong> Brian | <strong>PIN:</strong> 5503</p>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">👆 Or click "Quick" buttons above to auto-fill.</p>
           </div>
         </div>
 
