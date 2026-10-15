@@ -1,0 +1,14 @@
+# Runs the wedding booking jobs every hour: AmiDayne's 48-hour note, 72-hour hold expiry, and (once a day) autopay.
+# Needs the repository secret CRON_SECRET (same value as the CRON_SECRET environment variable on Vercel).
+name: weddings-cron
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch: {}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call booking jobs
+        run: |
+          curl -fsS -m 60 -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" https://afuvai.com/api/weddings/cron
