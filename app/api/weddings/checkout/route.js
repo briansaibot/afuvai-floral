@@ -22,6 +22,7 @@ export async function POST(req) {
   if (!plan) { return bad("That payment plan is not available for your date."); }
   const first = plan.payments[0];
   const s = stripe();
+  try {
   if (!rec.stripeCustomer) {
     const cu = await s.customers.create({ email: rec.couple.email, name: coupleNames(rec), phone: rec.couple.phone || undefined, metadata: { proposalId: rec.id, ref: rec.ref } });
     rec.stripeCustomer = cu.id;
@@ -41,4 +42,8 @@ export async function POST(req) {
   log(rec, "checkout opened (" + plan.key + ")");
   await putRec(rec);
   return json({ ok: true, url: session.url });
+  } catch (e) {
+    console.log("checkout failed", e && e.message);
+    return bad("We could not open secure checkout just now. Please try again in a minute, or call " + cfg.business.phone + ".", 502);
+  }
 }
