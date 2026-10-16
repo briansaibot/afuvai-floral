@@ -342,3 +342,10 @@ body.consult-mode .hero h1 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
 body.consult-mode aside.est-wrap { top: 56px; }
 @media (min-width: 1000px) { body.consult-mode aside.est-wrap { max-height: calc(100vh - 72px); } }
 footer .studio a { color: var(--line-strong); font-size: 12px; text-decoration: none; }
+/* Consult Mode on phones and iPads: the proposal panel sits inline at the top instead of in the bottom sheet */
+@media (max-width: 999px) {
+  body.consult-mode aside.est-wrap { position: static; inset: auto; visibility: visible; opacity: 1; background: none; display: block; order: -1; z-index: auto; }
+  body.consult-mode aside.est-wrap .est { max-height: none; overflow: visible; border: 1px solid var(--line-strong); transform: none; padding-bottom: 22px; }
+  body.consult-mode .sheet-close, body.consult-mode .bar { display: none !important; }
+  body.consult-mode footer { padding-bottom: 36px !important; }
+}
