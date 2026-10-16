@@ -28,6 +28,9 @@ export async function POST(req) {
     rec.stripeCustomer = cu.id;
   }
   const save = plan.key !== "full" && plan.payments.length > 1;
+  /* Send the couple back to the site they paid from (the live site, or a preview while testing). */
+  const origin = (() => { try { const o = new URL(req.headers.get("origin") || req.headers.get("referer") || ""); return /(^|\.)afuvai\.com$|\.vercel\.app$/.test(o.hostname) ? o.origin : ""; } catch (e) { return ""; } })();
+  const back = origin ? origin + "/weddings/proposal?id=" + rec.id : proposalLink(rec.id);
   const session = await s.checkout.sessions.create({
     mode: "payment", customer: rec.stripeCustomer,
     payment_method_types: ["card", "us_bank_account"],
@@ -36,7 +39,7 @@ export async function POST(req) {
     payment_intent_data: Object.assign({ metadata: { proposalId: rec.id, paymentKey: first.key, plan: plan.key }, description: "AFUVAI " + rec.ref + " " + first.label },
       save ? { setup_future_usage: "off_session" } : {}),
     metadata: { proposalId: rec.id, plan: plan.key, kind: "booking" },
-    success_url: proposalLink(rec.id) + "&paid=1", cancel_url: proposalLink(rec.id)
+    success_url: back + "&paid=1", cancel_url: back
   });
   rec.pendingCheckout = { sessionId: session.id, plan: plan.key, payments: plan.payments, at: new Date().toISOString() };
   log(rec, "checkout opened (" + plan.key + ")");
