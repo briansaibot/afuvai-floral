@@ -1,6 +1,6 @@
-# Runs the wedding booking jobs every hour: AmiDayne's 48-hour note, 72-hour hold expiry, and (once a day) autopay.
-# Needs the repository secret CRON_SECRET (same value as the CRON_SECRET environment variable on Vercel).
-name: weddings-cron
+# Hourly: AmiDayne's 48-hour note and the 72-hour hold expiry for wedding proposals.
+# (Autopay reminders and charges run once a day from the Vercel cron in vercel.json, protected by CRON_SECRET.)
+name: weddings-holds
 on:
   schedule:
     - cron: "7 * * * *"
@@ -9,6 +9,5 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - name: Call booking jobs
-        run: |
-          curl -fsS -m 60 -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" https://afuvai.com/api/weddings/cron
+      - name: Run hold checks
+        run: curl -fsS -m 60 https://www.afuvai.com/api/weddings/cron/holds
