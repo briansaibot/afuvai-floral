@@ -1,0 +1,26 @@
+.swrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; padding: 24px 0 40px; }
+.shead { display: flex; flex-direction: column; gap: 14px; }
+.shead .brand img { width: 44px; height: 44px; }
+.shead h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 400; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (min-width: 720px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stats div { background: var(--paper); border: 1px solid var(--line); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.stats span { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.stats b { font-family: var(--display); font-weight: 500; font-size: 1.6rem; }
+.slist { display: flex; flex-direction: column; gap: 10px; }
+.scard { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--line-strong); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.scard.s-sent, .scard.s-signed { border-left-color: var(--gold); }
+.scard.s-booked, .scard.s-paid, .scard.s-processing { border-left-color: var(--green); }
+.scard.s-failed { border-left-color: var(--warn); }
+.scard.s-expired, .scard.s-cancelled { opacity: 0.7; }
+.stop { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.stop b { font-family: var(--display); font-weight: 500; font-size: 1.3rem; }
+.spill { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 9px; background: var(--vellum); }
+.s-booked .spill, .s-paid .spill, .s-processing .spill { background: var(--green); color: var(--cream); }
+.s-failed .spill { background: var(--warn); color: #fff; }
+.s-sent .spill, .s-signed .spill { background: #f6e7c8; color: #6b4a10; }
+.snote { font-size: 14px; color: var(--gold-deep); }
+.sfacts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; }
+.sfacts dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.sfacts dd { margin: 0; font-size: 14.5px; }
+.sacts { display: flex; flex-wrap: wrap; gap: 6px 18px; }

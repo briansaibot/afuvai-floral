@@ -74,12 +74,19 @@ export default function WeddingsPage() {
                 We handle everything: sourcing, design, delivery, setup, and teardown. You arrive to a fully dressed venue — not a box of supplies.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="#booking"
+                <a
+                  href="/weddings/estimate"
                   className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold hover:opacity-85 transition-opacity"
                   style={{ background: SAGE, color: "#fff", letterSpacing: "0.06em" }}
                 >
-                  Book a Consultation <ArrowRight size={15} />
+                  Price Your Wedding <ArrowRight size={15} />
+                </a>
+                <Link
+                  href="#booking"
+                  className="inline-flex items-center gap-2 px-7 py-4 text-base font-semibold hover:opacity-85 transition-opacity border"
+                  style={{ borderColor: SAGE, color: SAGE, letterSpacing: "0.06em" }}
+                >
+                  Book a Consultation
                 </Link>
               </div>
             </div>
@@ -181,7 +188,7 @@ export default function WeddingsPage() {
           <div className="grid md:grid-cols-4 gap-0">
             {[
               { num: "01", title: "Consultation",   desc: "We discuss your vision, venue, palette, and budget. Complimentary — no obligation." },
-              { num: "02", title: "Proposal",       desc: "We send a detailed proposal with mood boards, stem concepts, and pricing within 5 days." },
+              { num: "02", title: "Proposal",       desc: "Your design and locked price, ready at your consultation. Reserve on the spot or take 72 hours to decide." },
               { num: "03", title: "Design Day",     desc: "Your florals are designed fresh the morning of your wedding by AmiDayne and her team." },
               { num: "04", title: "Setup & Beyond", desc: "We arrive, install everything, and stay until the last piece is perfect. Teardown included." },
             ].map((step, i) => (

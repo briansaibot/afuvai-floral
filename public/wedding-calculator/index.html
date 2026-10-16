@@ -1,0 +1,203 @@
+<!doctype html><html lang="en"><head><base href="/wedding-calculator/"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>AFUVAI Wedding Calculator</title>
+<meta name="description" content="Plan and price your Las Vegas wedding flowers with AFUVAI Floral Society.">
+<link rel="icon" href="assets/afs-monogram.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/app.css">
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-main" style="display:flex;flex-direction:column;gap:16px">
+      <div class="brand"><img src="assets/afs-monogram.png" alt="AFUVAI Floral Society monogram" width="64" height="64"><span>AFUVAI Floral Society</span></div>
+      <p class="eyebrow">Wedding Calculator</p>
+      <h1>Your wedding flowers, <em>priced in three minutes.</em></h1>
+      <p class="lede">Tell us your date and guest count and we fill in a complete floral plan for you. Pick your look, adjust anything you like, and compare three design levels side by side. When you are ready, send it to AmiDayne and choose a time for your consultation.</p>
+    </div>
+    <div class="hero-side">
+      <div class="hero-meta">
+        <span><b>Las Vegas</b> and Henderson</span>
+        <span><b>Strip resorts</b>, chapels and desert venues</span>
+        <span><b>One wedding</b> at a time</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <main class="flow" id="flow">
+
+      <section class="step" id="s1" aria-labelledby="s1h">
+        <div class="step-head"><span class="step-no" aria-hidden="true">1</span><h2 id="s1h">Your day</h2><p>Two answers and we build your starting plan.</p></div>
+        <div class="row">
+          <label class="f" for="date">Wedding date<input type="date" id="date" autocomplete="off" required></label>
+          <div class="f"><label for="guests">Guests</label>
+            <div class="guests"><button type="button" id="gMinus" aria-label="Ten fewer guests">−</button><input type="number" id="guests" inputmode="numeric" min="2" max="1000" step="1" value="120"><button type="button" id="gPlus" aria-label="Ten more guests">+</button></div>
+          </div>
+        </div>
+        <p class="status" id="dateStatus"><i></i><span>Add your date to check availability.</span></p>
+        <div class="f" role="group" aria-labelledby="pkgLabel"><span id="pkgLabel">Your collection</span><div class="pkgs" id="pkgs"></div></div>
+      </section>
+
+      <section class="step" id="s2" aria-labelledby="s2h">
+        <div class="step-head"><span class="step-no" aria-hidden="true">2</span><h2 id="s2h">Your look</h2><p>Choose a direction and tap your colors. Skip anything you have not decided.</p></div>
+        <div class="look">
+          <div class="look-art"><canvas id="bqMobile" width="440" height="480" aria-label="Illustration of your bouquet in your colors" role="img"></canvas><span class="hint">Your palette, sketched live</span></div>
+          <div class="f" role="group" aria-labelledby="styleLabel"><span id="styleLabel">Style direction</span><div class="styles" id="styles"></div></div>
+          <div class="f" role="group" aria-labelledby="colorLabel"><span id="colorLabel">Your colors</span><div class="swatches" id="colors"></div></div>
+        </div>
+        <details class="more" id="favMore">
+          <summary>Flower favorites, and any you never want</summary>
+          <div>
+            <p class="hint">Tap once for a favorite. Tap again for never. A third tap clears it.</p>
+            <div class="chips" id="favs"></div>
+            <p class="hint gold" id="favNote" hidden></p>
+          </div>
+        </details>
+        <details class="more">
+          <summary>Add an inspiration link</summary>
+          <div><label class="f" for="inspo">Pinterest board, Instagram post or any link<input type="url" id="inspo" placeholder="https://"></label></div>
+        </details>
+      </section>
+
+      <section class="step" id="s3" aria-labelledby="s3h">
+        <div class="step-head"><span class="step-no" aria-hidden="true">3</span><h2 id="s3h">Your pieces</h2><p>Already filled in for you. Open any group to adjust.</p></div>
+        <div class="filled"><span id="filledNote">Filled in for 120 guests.</span><button type="button" class="linkbtn" id="refill" hidden>Update for 120 guests</button></div>
+        <div class="f" role="group" aria-labelledby="wkLabel"><span id="wkLabel">Add to your weekend</span><div class="chips" id="weekend"></div></div>
+        <div class="groups" id="groups"></div>
+        <div class="addons">
+          <label class="check" for="reuse"><input type="checkbox" id="reuse"><span>Move ceremony pieces to the reception<small>Your arch florals become the sweetheart table and aisle pieces dress the bar. <span class="save" id="reuseSave"></span></small></span></label>
+        </div>
+      </section>
+
+      <section class="step" id="s4" aria-labelledby="s4h">
+        <div class="step-head"><span class="step-no" aria-hidden="true">4</span><h2 id="s4h">Your venue</h2><p>Start typing. Delivery, setup and venue rules are added for you.</p></div>
+        <div id="venuePick" class="vsearch">
+          <label class="f" for="venueQ">Venue<input type="text" id="venueQ" placeholder="Bellagio, Chapel of the Flowers, Valley of Fire..." autocomplete="off" role="combobox" aria-controls="vlist" aria-expanded="false"></label>
+          <ul class="vlist" id="vlist" role="listbox" hidden></ul>
+        </div>
+        <div id="venueChosen" hidden></div>
+        <div id="venueCustom" hidden class="row">
+          <label class="f" for="zone">Area<select id="zone"></select></label>
+        </div>
+        <div class="f" role="group" aria-labelledby="setLabel" id="settingWrap" hidden><span id="setLabel">Ceremony and reception</span><div class="chips" id="setting"></div></div>
+        <label class="check" for="strike"><input type="checkbox" id="strike" checked><span>Breakdown and haul-away<small id="strikeNote">We return after your event and clear every vessel and stand.</small></span></label>
+      </section>
+
+      <section class="step" id="s5" aria-labelledby="s5h">
+        <div class="step-head"><span class="step-no" aria-hidden="true">5</span><h2 id="s5h">Send it to AmiDayne</h2><p>She builds a design board from your selections before you meet.</p></div>
+        <form id="form" novalidate style="display:flex;flex-direction:column;gap:16px">
+          <div class="row">
+            <label class="f" for="name">Your name<input type="text" id="name" autocomplete="name" required></label>
+            <label class="f" for="email">Email<input type="email" id="email" autocomplete="email" required></label>
+            <label class="f" for="phone">Mobile (optional)<input type="tel" id="phone" autocomplete="tel"></label>
+            <label class="f" for="partner">Partner's name (optional)<input type="text" id="partner" autocomplete="off"></label>
+          </div>
+          <div class="f" role="group" aria-labelledby="slotLabel"><span id="slotLabel">Preferred consultation time (optional, Las Vegas time). AmiDayne confirms by email.</span>
+            <div class="chips" id="cmode"></div>
+            <div class="slots" id="slots"></div>
+          </div>
+          <div class="f" role="group" aria-labelledby="decLabel"><span id="decLabel">Who else is part of the decision?</span>
+            <div class="chips" id="deciders"></div>
+            <p class="hint gold" id="decidersNote" hidden></p>
+          </div>
+          <div class="f" role="group" aria-labelledby="timLabel"><span id="timLabel">When are you hoping to decide?</span>
+            <div class="chips" id="timing"></div>
+          </div>
+          <label class="f" for="notes">Anything else AmiDayne should know?<textarea id="notes" placeholder="Your theme, a flower that means something to you, your planner's name..."></textarea></label>
+          <div class="hp" aria-hidden="true"><label for="company">Company<input type="text" id="company" tabindex="-1" autocomplete="off"></label></div>
+          <div id="turnstile"></div>
+          <p class="err" id="formErr" role="alert" hidden></p>
+          <button class="btn gold" type="submit" id="submitBtn">Send my estimate</button>
+          <p class="fine">No payment is taken here. Your estimate is held for 14 days, and if you are ready at your consultation you can reserve your date right there.</p>
+        </form>
+        <div class="done" id="done" hidden></div>
+      </section>
+    </main>
+
+    <aside class="est-wrap" id="sheet" aria-label="Your estimate">
+      <div class="est" id="est">
+        <button type="button" class="sheet-close" id="sheetClose" aria-label="Close estimate">×</button>
+        <div class="est-top">
+          <canvas id="bqDesk" width="232" height="256" role="img" aria-label="Illustration of your bouquet in your colors"></canvas>
+          <div><p class="eyebrow">Your estimate</p><h2>Three ways to do it</h2><div class="board" id="board"></div></div>
+        </div>
+        <p class="board-note" id="boardNote" hidden></p>
+        <div class="tiers" id="tiers"></div>
+        <div class="lines" id="lines" aria-live="polite"></div>
+        <button type="button" class="linkbtn" id="showAll" style="align-self:flex-start">Show every piece</button>
+        <div class="budget">
+          <div class="bi"><span>Budget in mind?</span><input type="number" id="budget" inputmode="numeric" min="0" step="500" placeholder="Optional, e.g. 15000"></div>
+          <p class="hint" id="budgetNote"></p>
+          <div class="tips" id="tips"></div>
+        </div>
+        <div class="pay" id="pay"></div>
+        <div class="est-actions">
+          <button class="btn gold" type="button" id="goSend">Send to AmiDayne</button>
+          <div class="pair"><button class="btn ghost" type="button" id="copyLink">Copy link to this estimate</button><button class="btn ghost" type="button" id="emailMe" hidden>Email it to me</button></div>
+          <form class="mini" id="saveForm" hidden novalidate><input type="email" id="saveEmail" placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn" type="submit">Send</button></form>
+          <p class="toast" id="toast" aria-live="polite"></p>
+        </div>
+        <p class="fine" id="fine"></p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="band" id="ready" aria-labelledby="readyH">
+    <header><p class="eyebrow">Resort-ready</p><h2 id="readyH">Built for Las Vegas weddings</h2></header>
+    <div class="ready" id="readyList"></div>
+  </section>
+
+  <section class="band" aria-labelledby="herH">
+    <div class="heritage">
+      <img src="assets/afs-monogram.png" alt="" width="120" height="120">
+      <div>
+        <p class="eyebrow" id="herH">Raised in a flower shop</p>
+        <blockquote>AmiDayne grew up in her mother's shop, Wizard's Flower Magic, in Lovelock, Nevada.</blockquote>
+        <p>Nearly forty years of flowers came before AFUVAI. Every wedding is designed by AmiDayne herself, hand-built with the freshest premium blooms we can source, and we take one wedding at a time so yours gets her full attention.</p>
+        <div id="video"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="faqH">
+    <header><p class="eyebrow">Questions</p><h2 id="faqH">Before you send it</h2></header>
+    <div class="faq" id="faq"></div>
+  </section>
+</div>
+
+<footer>
+  <img src="assets/afs-monogram.png" alt="AFUVAI Floral Society monogram" width="56" height="56">
+  <p>AFUVAI Floral Society · Las Vegas, Nevada</p>
+  <p>Estimates are planning ranges and include estimated sales tax. Final pricing is confirmed in your proposal.</p>
+  <p class="studio"><a href="#consult" id="studioLink">Studio</a></p>
+</footer>
+
+<div class="bar" id="bar">
+  <div><div class="t" id="barT">Lush</div><div class="v" id="barV">—</div></div>
+  <button class="btn" type="button" id="barGo">See estimate</button>
+</div>
+
+<div class="keep" id="keep" hidden role="dialog" aria-modal="true" aria-labelledby="keepH">
+  <div>
+    <h3 id="keepH">Keep your estimate?</h3>
+    <p class="hint">We will email you a link so you can pick up right where you left off.</p>
+    <form class="mini" id="keepForm" novalidate><input type="email" id="keepEmail" placeholder="Your email" autocomplete="email" aria-label="Your email"><button class="btn" type="submit">Email it</button></form>
+    <button type="button" class="linkbtn" id="keepNo" style="align-self:flex-start">No thanks</button>
+  </div>
+</div>
+
+<!-- Netlify Forms detection: keep these field names in sync with sendLead() in js/app.js -->
+<form name="wedding-estimate" data-netlify="true" netlify-honeypot="company" hidden>
+  <input name="name"><input name="email"><input name="phone"><input name="partner"><input name="wedding_date"><input name="guests">
+  <input name="venue"><input name="selected_level"><input name="selected_estimate"><input name="all_estimates"><input name="consultation">
+  <input name="ref"><input name="lead_rating"><input name="estimate_link"><input name="consult_link"><input name="deciders"><input name="decision_timing"><textarea name="notes"></textarea><textarea name="full_details"></textarea><input name="company">
+</form>
+
+<script src="js/config.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/bouquet.js"></script>
+<script src="js/app.js"></script>
+
+</body></html>
