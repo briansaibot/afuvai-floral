@@ -7,7 +7,7 @@
   var cfg = window.AFUVAI_CONFIG, E = window.AFUVAI_ENGINE, BQ = window.AFUVAI_BOUQUET;
   var BOOK = E.bookingBase(cfg, location);
   var $ = function (id) { return document.getElementById(id); };
-  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money = function (n) { n = Math.round(n); return (n < 0 ? "−$" : "$") + Math.abs(n).toLocaleString("en-US"); };
   var DOW = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var MON = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var COLORS = {}; cfg.colors.forEach(function (c) { COLORS[c[0]] = c[1]; });

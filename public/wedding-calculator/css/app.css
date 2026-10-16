@@ -349,3 +349,4 @@ footer .studio a { color: var(--line-strong); font-size: 12px; text-decoration: 
   body.consult-mode .sheet-close, body.consult-mode .bar { display: none !important; }
   body.consult-mode footer { padding-bottom: 36px !important; }
 }
+input[type=password] { font: inherit; font-size: 16px; color: var(--ink); background: var(--ivory); border: 1px solid var(--line-strong); border-radius: var(--r); padding: 12px 13px; width: 100%; min-height: 48px; }

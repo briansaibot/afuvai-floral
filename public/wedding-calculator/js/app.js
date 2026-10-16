@@ -11,7 +11,7 @@
   var BOOK = E.bookingBase(cfg, location);
   var PREVIEW = !API;
   var $ = function (id) { return document.getElementById(id); };
-  var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money = function (n) { n = Math.round(n); return (n < 0 ? "−$" : "$") + Math.abs(n).toLocaleString("en-US"); };
   var rng = function (r) { return money(r.low) + " – " + money(r.high); };
   var COLORS = {}; cfg.colors.forEach(function (c) { COLORS[c[0]] = c[1]; });
   var ITEMS = E.itemMap(cfg);
