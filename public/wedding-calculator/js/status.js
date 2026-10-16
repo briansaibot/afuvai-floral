@@ -108,6 +108,15 @@
       acts.appendChild(h("a", { class: "linkbtn", href: "mailto:" + (c.email || "") + "?subject=" + encodeURIComponent("Still holding your date") + "&body=" + encodeURIComponent(note), text: "Email Ami's note" }));
     }
     if (c.email) { acts.appendChild(h("a", { class: "linkbtn", href: "mailto:" + c.email, text: c.email })); }
+    if (!PREVIEW && x.id && r.status !== "cancelled" && r.status !== "expired") {
+      acts.appendChild(h("button", { type: "button", class: "linkbtn", text: "Cancel", onclick: function () {
+        var why = window.prompt("Cancel " + who + " (" + sd(x.date) + ")? This releases the date and stops scheduled payments. It does not refund. Type a reason to confirm:");
+        if (!why) { return; }
+        fetch(BOOK + "/admin/cancel", { method: "POST", headers: { "Content-Type": "application/json", "x-admin-key": LS.get("afuvai_admin_key") || "" }, body: JSON.stringify({ id: x.id, reason: why }) })
+          .then(function (res) { if (!res.ok) { throw new Error(); } x.status = "cancelled"; rows = rows.map(function (rr) { return view(rr.x); }); render(); })
+          .catch(function () { window.alert("Could not cancel. Check the studio password and try again."); });
+      } }));
+    }
     return h("article", { class: "scard s-" + r.status }, [
       h("div", { class: "stop" }, [h("b", { text: who }), h("span", { class: "spill", text: STATUS[r.status] || r.status })]),
       h("p", { class: "hint", text: line2 + " · " + x.ref }),
