@@ -326,10 +326,10 @@
   }
   function proposalBase() { return location.href.split("#")[0].split("?")[0].replace(/[^\/]*$/, "") + "proposal.html"; }
   var cref = {};
-  function adminKey(force) {
-    var k = LS.get("afuvai_admin_key");
-    if (!k || force) { k = window.prompt("Admin key for Consult Mode"); if (k) { LS.set("afuvai_admin_key", k); } }
-    return k || "";
+  function adminKey() {
+    var typed = cref.key ? cref.key.value.trim() : "";
+    if (typed) { LS.set("afuvai_admin_key", typed); return typed; }
+    return LS.get("afuvai_admin_key") || "";
   }
   function consultProposal() {
     var c = { name: cref.name.value.trim(), partner: cref.partner.value.trim(), email: cref.email.value.trim(), phone: cref.phone.value.trim() };
@@ -358,6 +358,8 @@
     cref.out = h("div", { class: "ct-out", hidden: true });
     cref.err = h("p", { class: "err", hidden: true });
     cref.btn = h("button", { type: "button", class: "btn gold", text: "Create proposal", onclick: createProposal });
+    cref.key = h("input", { type: "password", id: "c_key", autocomplete: "current-password", placeholder: "Asked once on this device" });
+    cref.keyWrap = h("label", { class: "f", for: "c_key", hidden: !!(LS.get("afuvai_admin_key") || !BOOK) }, ["Studio password", cref.key]);
     var panel = h("div", { class: "consult-panel" }, [
       h("p", { class: "eyebrow", text: "Proposal" }),
       cref.total, cref.totalSub,
@@ -367,7 +369,7 @@
         h("p", { class: "hint", text: "For a larger build or anything the calculator does not price. Taxed like florals. Use a minus amount for a credit." }),
         h("div", { class: "row" }, [mk("c_adjLabel", "Label", "text", "", "Extended arch install"), mk("c_adj", "Amount", "number", "", "0")])
       ])]),
-      cref.err, cref.btn, cref.out
+      cref.keyWrap, cref.err, cref.btn, cref.out
     ]);
     var acts = document.querySelector(".est-actions");
     acts.parentNode.insertBefore(panel, acts);
@@ -421,8 +423,12 @@
       return fetch(BOOK + "/proposals", { method: "POST", headers: { "Content-Type": "application/json", "x-admin-key": key }, body: JSON.stringify({ state: pack(state), couple: o.couple, note: o.note, adj: o.adj }) })
         .then(function (r) { return r.json().then(function (j) { return { r: r, j: j }; }); });
     };
-    send(adminKey()).then(function (x) { return x.r.status === 401 ? send(adminKey(true)) : x; }).then(function (x) {
+    var key = adminKey();
+    if (!key) { err.hidden = false; err.textContent = "Enter the studio password above, then try again."; cref.keyWrap.hidden = false; cref.key.focus(); cref.btn.disabled = false; cref.btn.textContent = "Create proposal"; return; }
+    send(key).then(function (x) {
+      if (x.r.status === 401) { LS.set("afuvai_admin_key", null); cref.keyWrap.hidden = false; cref.key.value = ""; cref.key.focus(); throw new Error("That studio password did not work. Enter it again."); }
       if (!x.r.ok || !x.j.ok) { throw new Error(x.j.error || "Could not create the proposal."); }
+      cref.keyWrap.hidden = true;
       showProposalLink(x.j.url, x.j.proposal);
     }).catch(function (e) { err.hidden = false; err.textContent = e.message || "Could not create the proposal."; })
       .then(function () { cref.btn.disabled = false; cref.btn.textContent = "Create proposal"; });
