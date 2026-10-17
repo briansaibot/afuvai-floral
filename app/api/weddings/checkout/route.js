@@ -10,7 +10,7 @@ export async function POST(req) {
   if (!rec) { return bad("Not found", 404); }
   const st = liveStatus(rec);
   if (st === "expired") { return bad("Your date hold has ended. Contact " + cfg.business.designer + " to check your date.", 409); }
-  if (st !== "sent" && st !== "signed") { return bad("This proposal is already booked.", 409); }
+  if (st !== "sent" && st !== "signed") { return bad("This contract is already booked.", 409); }
   if (await dateTaken(rec.date, rec.id)) { return bad("This date was just booked. Contact " + cfg.business.designer + ".", 409); }
   if (!rec.signature) {
     const sig = cleanSig(body.signature, req);
@@ -30,7 +30,7 @@ export async function POST(req) {
   const save = plan.key !== "full" && plan.payments.length > 1;
   /* Send the couple back to the site they paid from (the live site, or a preview while testing). */
   const origin = (() => { try { const o = new URL(req.headers.get("origin") || req.headers.get("referer") || ""); return /(^|\.)afuvai\.com$|\.vercel\.app$/.test(o.hostname) ? o.origin : ""; } catch (e) { return ""; } })();
-  const back = origin ? origin + "/weddings/proposal?id=" + rec.id : proposalLink(rec.id);
+  const back = origin ? origin + "/weddings/contract?id=" + rec.id : proposalLink(rec.id);
   const session = await s.checkout.sessions.create({
     mode: "payment", customer: rec.stripeCustomer,
     payment_method_types: ["card", "us_bank_account"],

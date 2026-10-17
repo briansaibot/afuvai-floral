@@ -349,12 +349,12 @@
     /* ---------- Booking (proposal, agreement, payment) ---------- */
     booking: {
       /* AmiDayne's follow-up note, sent 48 hours into the 72-hour hold if the couple has not booked. {first}, {date}, {hours} and {link} are filled in. */
-      holdNote: "Hi {first}, I loved designing with you. I am still holding {date} for you for {hours} more hours. Your proposal is right here whenever you are ready: {link}. If anything is on your mind, just reply and we will figure it out together. AmiDayne",
+      holdNote: "Hi {first}, I loved designing with you. I am still holding {date} for you for {hours} more hours. Your contract is right here whenever you are ready: {link}. If anything is on your mind, just reply and we will figure it out together. AmiDayne",
       /* Agreement terms, confirmed by NOVA and AmiDayne on 2026-10-15. Change agreementVersion whenever the wording changes. */
-      agreementVersion: "2026-10-15",
+      agreementVersion: "2026-10-16",
       agreement: [
         { h: "Your date and your retainer", p: "Your date is reserved for your wedding only when this agreement is signed and your retainer is paid. The retainer is non-refundable because we turn away other weddings for your date." },
-        { h: "Your price is locked", p: "The design level and total in this proposal are locked. Final flower varieties are confirmed at your design lock {lock} days before your wedding. If a bloom is unavailable or not at its best, we substitute flowers of equal or greater value that keep your look, and we tell you before your wedding, never on the day." },
+        { h: "Your price is locked", p: "The design level and total in this contract are locked. Final flower varieties are confirmed at your design lock {lock} days before your wedding. If a bloom is unavailable or not at its best, we substitute flowers of equal or greater value that keep your look, and we tell you before your wedding, never on the day." },
         { h: "Payments", p: "You choose a payment plan below. Every plan is paid in full {balance} days before your wedding. If you choose Standard or Monthly, you authorize AFUVAI Floral Society to charge the card or bank account you use today on each date shown, and we remind you {reminder} days before each charge." },
         { h: "Changes", p: "Your guest count and pieces can change until {lock} days before your wedding. Pieces can be added until {adds} days before, billed separately. Reductions after your design lock are not refunded, because flowers and rentals are already ordered." },
         { h: "Missed payments", p: "If a scheduled payment fails, we let you know right away and try again after three days. If a payment is more than ten days late, your date may be released, and payments already made are handled as described under cancellation." },
@@ -376,11 +376,11 @@
     ],
 
     faq: [
-      { q: "Is this a quote?", a: "It is a planning range built from our real recipes and Las Vegas wholesale costs. Your exact price comes in your custom proposal after your consultation." },
+      { q: "Is this a quote?", a: "It is a planning range built from our real recipes and Las Vegas wholesale costs. Your exact price comes in your custom contract after your consultation." },
       { q: "What happens after I send it?", a: "AmiDayne reviews your selections and builds a design board for you. At your consultation, by video or in person, you see your design, adjust anything, and leave with your proposal. If you love it, you can reserve your date right there." },
       { q: "How do payments work?", a: "A 30% retainer reserves your date. Then choose what suits you: a 30% design payment 90 days before and the balance 30 days before, monthly payments, or pay in full and receive your first-anniversary flowers as our gift. Everything is paid 30 days before your wedding. Nothing is charged through this page." },
       { q: "Do we have to decide at the consultation?", a: "No. If you are ready, you can sign and reserve on the spot. If you want to think it over, we hold your date for 72 hours while you decide." },
-      { q: "What if my flowers are out of season?", a: "We design with blooms of equal or greater value that keep your look, and we tell you before your proposal, never on the day." },
+      { q: "What if my flowers are out of season?", a: "We design with blooms of equal or greater value that keep your look, and we tell you before your contract, never on the day." },
       { q: "How far ahead should we book?", a: "Most couples book four to nine months out, and spring and fall Saturdays fill first. Shorter notice is often possible because our flower orders need about 14 days." },
       { q: "Do you work at resorts and outdoor venues?", a: "Yes. Strip resorts, chapels, private estates and desert locations. For outdoor summer weddings we use heat-hardy blooms and stage everything in shade until the last moment." },
       { q: "Can we change things later?", a: "Yes. Pieces and guest counts can change until 45 days before your wedding, and you can add pieces until 14 days before." }

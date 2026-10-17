@@ -188,7 +188,7 @@ export default function WeddingsPage() {
           <div className="grid md:grid-cols-4 gap-0">
             {[
               { num: "01", title: "Consultation",   desc: "We discuss your vision, venue, palette, and budget. Complimentary — no obligation." },
-              { num: "02", title: "Proposal",       desc: "Your design and locked price, ready at your consultation. Reserve on the spot or take 72 hours to decide." },
+              { num: "02", title: "Contract",       desc: "Your design and locked price, ready at your consultation. Reserve on the spot or take 72 hours to decide." },
               { num: "03", title: "Design Day",     desc: "Your florals are designed fresh the morning of your wedding by AmiDayne and her team." },
               { num: "04", title: "Setup & Beyond", desc: "We arrive, install everything, and stay until the last piece is perfect. Teardown included." },
             ].map((step, i) => (

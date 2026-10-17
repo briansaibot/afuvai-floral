@@ -15,12 +15,15 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/weddings/estimate', destination: '/wedding-calculator/index.html' },
+      { source: '/weddings/contract', destination: '/wedding-calculator/proposal.html' },
+      /* Older links sent before the rename keep working. */
       { source: '/weddings/proposal', destination: '/wedding-calculator/proposal.html' },
       { source: '/weddings/studio', destination: '/wedding-calculator/status.html' },
     ];
   },
   async headers() {
     return [
+      { source: '/weddings/contract', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }, { key: 'Referrer-Policy', value: 'no-referrer' }] },
       { source: '/weddings/proposal', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }, { key: 'Referrer-Policy', value: 'no-referrer' }] },
       { source: '/weddings/studio', headers: [{ key: 'X-Robots-Tag', value: 'noindex' }] },
       { source: '/wedding-calculator/:path*', headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }] },

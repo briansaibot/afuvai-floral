@@ -350,21 +350,21 @@
     var c = consultContact || {};
     var mk = function (id, label, type, val, ph) { var i = h(type === "textarea" ? "textarea" : "input", { id: id, type: type === "textarea" ? null : type, value: type === "textarea" ? null : (val || ""), placeholder: ph || "", oninput: renderConsultTotal }); if (type === "textarea") { i.value = val || ""; } cref[id.replace("c_", "")] = i; return h("label", { class: "f", for: id }, [label, i]); };
     var banner = h("div", { class: "consult-bar" }, [
-      h("span", null, [h("b", { text: "Consult Mode" }), " · Adjust anything live, then create the proposal."]),
+      h("span", null, [h("b", { text: "Consult Mode" }), " · Adjust anything live, then create the contract."]),
       h("a", { href: "status.html", text: "Status board" })
     ]);
     document.body.insertBefore(banner, document.body.firstChild);
     cref.total = h("p", { class: "ct-total num" }); cref.totalSub = h("p", { class: "hint" });
     cref.out = h("div", { class: "ct-out", hidden: true });
     cref.err = h("p", { class: "err", hidden: true });
-    cref.btn = h("button", { type: "button", class: "btn gold", text: "Create proposal", onclick: createProposal });
+    cref.btn = h("button", { type: "button", class: "btn gold", text: "Create contract", onclick: createProposal });
     cref.key = h("input", { type: "password", id: "c_key", autocomplete: "current-password", placeholder: "Asked once on this device" });
     cref.keyWrap = h("label", { class: "f", for: "c_key", hidden: !!(LS.get("afuvai_admin_key") || !BOOK) }, ["Studio password", cref.key]);
     var panel = h("div", { class: "consult-panel" }, [
-      h("p", { class: "eyebrow", text: "Proposal" }),
+      h("p", { class: "eyebrow", text: "Contract" }),
       cref.total, cref.totalSub,
       h("div", { class: "row" }, [mk("c_name", "Name", "text", c.name), mk("c_partner", "Partner", "text", c.partner), mk("c_email", "Email", "email", c.email), mk("c_phone", "Mobile", "tel", c.phone)]),
-      mk("c_note", "A note from you on the proposal", "textarea", "", "What you loved about their vision, what you will make sure of..."),
+      mk("c_note", "A note from you on the contract", "textarea", "", "What you loved about their vision, what you will make sure of..."),
       h("details", { class: "more" }, [h("summary", { text: "Custom adjustment" }), h("div", null, [
         h("p", { class: "hint", text: "For a larger build or anything the calculator does not price. Taxed like florals. Use a minus amount for a credit." }),
         h("div", { class: "row" }, [mk("c_adjLabel", "Label", "text", "", "Extended arch install"), mk("c_adj", "Amount", "number", "", "0")])
@@ -385,21 +385,21 @@
     var qrBox = h("div", { class: "ct-qr" });
     var first = (pr.couple.name || "").split(" ")[0];
     var hold = new Date(pr.holdUntil);
-    var sms = "sms:" + (pr.couple.phone || "") + "?&body=" + encodeURIComponent("Your AFUVAI proposal: " + url);
-    var mail = "mailto:" + (pr.couple.email || "") + "?subject=" + encodeURIComponent("Your wedding flower proposal") + "&body=" + encodeURIComponent("Hi " + (first || "there") + ",\n\nHere is your proposal. Your date is held for you for 72 hours.\n\n" + url + "\n\nAmiDayne");
+    var sms = "sms:" + (pr.couple.phone || "") + "?&body=" + encodeURIComponent("Your AFUVAI contract: " + url);
+    var mail = "mailto:" + (pr.couple.email || "") + "?subject=" + encodeURIComponent("Your wedding flower contract") + "&body=" + encodeURIComponent("Hi " + (first || "there") + ",\n\nHere is your contract. Your date is held for you for 72 hours.\n\n" + url + "\n\nAmiDayne");
     out.appendChild(h("p", { class: "eyebrow", text: "Ready for " + (first || "the couple") }));
     out.appendChild(qrBox);
     out.appendChild(h("p", { class: "hint", text: "Scan to open and pay on their phone. Date held until " + DOW[hold.getDay()] + " " + MON[hold.getMonth()] + " " + hold.getDate() + ", " + hold.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) + "." }));
     out.appendChild(h("a", { class: "btn", href: url, text: "Open it here on this screen" }));
     out.appendChild(h("div", { class: "pair" }, [
-      h("button", { type: "button", class: "btn ghost", text: "Copy link", onclick: function () { copyText(url, "Proposal link copied. Paste it into the video call chat."); } }),
+      h("button", { type: "button", class: "btn ghost", text: "Copy link", onclick: function () { copyText(url, "Contract link copied. Paste it into the video call chat."); } }),
       h("a", { class: "btn ghost", href: sms, text: "Text it" })
     ]));
     out.appendChild(h("a", { class: "btn ghost", href: mail, text: "Email it" }));
     loadQr(function () {
       if (!window.qrcode) { qrBox.appendChild(h("p", { class: "hint", text: "QR code unavailable offline. Use Copy link." })); return; }
       try { var q = window.qrcode(0, url.length > 900 ? "L" : "M"); q.addData(url); q.make(); qrBox.innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); }
-      catch (e) { qrBox.appendChild(h("p", { class: "hint", text: "This preview link is too long for a QR code. Live proposals use short links." })); }
+      catch (e) { qrBox.appendChild(h("p", { class: "hint", text: "This preview link is too long for a QR code. Live contracts use short links." })); }
     });
     out.scrollIntoView({ block: "nearest" });
   }
@@ -424,14 +424,14 @@
         .then(function (r) { return r.json().then(function (j) { return { r: r, j: j }; }); });
     };
     var key = adminKey();
-    if (!key) { err.hidden = false; err.textContent = "Enter the studio password above, then try again."; cref.keyWrap.hidden = false; cref.key.focus(); cref.btn.disabled = false; cref.btn.textContent = "Create proposal"; return; }
+    if (!key) { err.hidden = false; err.textContent = "Enter the studio password above, then try again."; cref.keyWrap.hidden = false; cref.key.focus(); cref.btn.disabled = false; cref.btn.textContent = "Create contract"; return; }
     send(key).then(function (x) {
       if (x.r.status === 401) { LS.set("afuvai_admin_key", null); cref.keyWrap.hidden = false; cref.key.value = ""; cref.key.focus(); throw new Error("That studio password did not work. Enter it again."); }
-      if (!x.r.ok || !x.j.ok) { throw new Error(x.j.error || "Could not create the proposal."); }
+      if (!x.r.ok || !x.j.ok) { throw new Error(x.j.error || "Could not create the contract."); }
       cref.keyWrap.hidden = true;
       showProposalLink(x.j.url, x.j.proposal);
-    }).catch(function (e) { err.hidden = false; err.textContent = e.message || "Could not create the proposal."; })
-      .then(function () { cref.btn.disabled = false; cref.btn.textContent = "Create proposal"; });
+    }).catch(function (e) { err.hidden = false; err.textContent = e.message || "Could not create the contract."; })
+      .then(function () { cref.btn.disabled = false; cref.btn.textContent = "Create contract"; });
   }
 
   /* ---------- Estimate ---------- */
@@ -504,7 +504,7 @@
     /* payments */
     renderPay(r);
     var valid = E.addDays(new Date(), cfg.pricing.quoteValidDays);
-    $("fine").textContent = "A planning range including estimated sales tax, held through " + MON[valid.getMonth()] + " " + valid.getDate() + ". Final pricing is confirmed in your proposal.";
+    $("fine").textContent = "A planning range including estimated sales tax, held through " + MON[valid.getMonth()] + " " + valid.getDate() + ". Final pricing is confirmed in your contract.";
 
     /* bar + art */
     $("barT").textContent = cfg.tiers[t].name + " estimate";
@@ -654,7 +654,7 @@
     d.appendChild(h("ol", { class: "timeline" }, [
       h("li", { text: "AmiDayne reviews your selections and replies to " + p.contact.email + "." }),
       h("li", { text: "AmiDayne builds a design board from your colors, style and pieces." }),
-      h("li", { text: "You meet, adjust anything together, and leave with your proposal." }),
+      h("li", { text: "You meet, adjust anything together, and leave with your contract." }),
       h("li", { text: "Ready? Reserve your date on the spot with a 30% retainer. Want to think it over? We hold your date for 72 hours." })
     ]));
     var acts = h("div", { class: "est-actions" });

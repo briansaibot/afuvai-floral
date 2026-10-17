@@ -48,7 +48,7 @@
         pr = j.proposal; live = { status: j.status, signature: j.signature || null, plan: j.plan || null, schedule: j.schedule || null };
         if (params.get("paid") && live.status !== "booked" && live.status !== "processing") { return waitForPayment(0); }
         render();
-      }).catch(function () { fail("We could not open this proposal. Check the link, or contact " + cfg.business.designer + "."); });
+      }).catch(function () { fail("We could not open this contract. Check the link, or contact " + cfg.business.designer + "."); });
       return;
     }
     try {
@@ -60,7 +60,7 @@
       var pn = $("previewNote"); pn.hidden = false;
       pn.textContent = "Preview: payment is simulated and nothing is charged.";
       render();
-    } catch (e) { fail("This proposal link is incomplete. Ask " + cfg.business.designer + " to send it again."); }
+    } catch (e) { fail("This contract link is incomplete. Ask " + cfg.business.designer + " to send it again."); }
   }
   function waitForPayment(n) {
     $("app").innerHTML = ""; $("app").appendChild(h("p", { class: "loading", text: "Confirming your payment…" }));
@@ -77,7 +77,7 @@
   function names() { var c = pr.couple || {}; return [c.name, c.partner].filter(Boolean).map(function (n) { return n.split(" ")[0]; }).join(" & "); }
   function render() {
     var app = $("app"); app.innerHTML = "";
-    document.title = "Proposal for " + (names() || "your wedding") + " · AFUVAI";
+    document.title = "Contract for " + (names() || "your wedding") + " · AFUVAI";
     var booked = live.status === "booked" || live.status === "processing" || live.status === "paid";
     app.appendChild(head(booked));
     if (booked) { app.appendChild(confirmation()); }
@@ -99,7 +99,7 @@
     return h("header", { class: "phero" }, [
       h("div", { class: "brand" }, [h("img", { src: "assets/afs-monogram.png", alt: "", width: "56", height: "56" }), h("span", { text: "AFUVAI Floral Society" })]),
       h("p", { class: "eyebrow", text: "Your wedding flowers · " + pr.ref }),
-      h("h1", null, ["A proposal for ", h("em", { text: names() || "you" })]),
+      h("h1", null, ["A contract for ", h("em", { text: names() || "you" })]),
       h("p", { class: "pmeta", text: meta.join(" · ") }),
       booked ? h("p", { class: "phold ok" }, [h("b", { text: "Your date is reserved." })])
         : holdExpired() ? null
@@ -159,7 +159,7 @@
     add("tot", "Your total", money(pr.total));
     return h("section", { class: "psec" }, [
       h("p", { class: "eyebrow", text: "Your flowers" }),
-      h("h2", { text: "Everything in your proposal" }),
+      h("h2", { text: "Everything in your contract" }),
       box,
       h("p", { class: "plock" }, [h("b", { text: "Your price is locked. " }), "This total does not change when flower prices move. Add pieces any time until " + cfg.payments.addUntilDaysBefore + " days before your wedding."])
     ]);
@@ -230,8 +230,8 @@
     var btn = h("button", { type: "button", class: "btn gold", text: "Sign and reserve my date · " + money(first), onclick: function () { pay(btn, err); } });
     var link = location.href.split("&paid")[0];
     var share = function () {
-      var text = "Our wedding flower proposal from AFUVAI. Our date is held until " + whenTime(new Date(pr.holdUntil)) + ".";
-      if (navigator.share) { navigator.share({ title: "Wedding flower proposal", text: text, url: link }).catch(function () {}); }
+      var text = "Our wedding flower contract from AFUVAI. Our date is held until " + whenTime(new Date(pr.holdUntil)) + ".";
+      if (navigator.share) { navigator.share({ title: "Wedding flower contract", text: text, url: link }).catch(function () {}); }
       else if (navigator.clipboard) { navigator.clipboard.writeText(link).then(function () { err.hidden = false; err.className = "toast"; err.textContent = "Link copied. Send it to whoever is paying."; }); }
     };
     var kids = [
@@ -309,7 +309,7 @@
     return h("section", { class: "psec preserve" }, [
       h("p", { class: "eyebrow", text: "Date hold ended" }),
       h("h2", { text: "Your " + cfg.payments.holdHours + "-hour hold ended " + whenTime(new Date(pr.holdUntil)) + "." }),
-      h("p", { text: "Your date may still be open. Reach " + cfg.business.designer + " and she will check her calendar and send a fresh proposal." }),
+      h("p", { text: "Your date may still be open. Reach " + cfg.business.designer + " and she will check her calendar and send a fresh contract." }),
       h("a", { class: "btn gold", href: mail, text: "Email " + cfg.business.designer }),
       h("a", { class: "btn ghost", href: "tel:" + cfg.business.phone.replace(/[^\d+]/g, ""), text: "Call " + cfg.business.phone })
     ]);

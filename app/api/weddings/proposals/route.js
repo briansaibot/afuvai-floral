@@ -25,7 +25,7 @@ export async function POST(req) {
   log(rec, "created");
   await putRec(rec);
   await holdDate(rec);
-  await sendEmail({ to: admins(), subject: "Proposal sent · " + coupleNames(rec) + " · " + sd(rec.date) + " · " + money(rec.total),
+  await sendEmail({ to: admins(), subject: "Contract sent · " + coupleNames(rec) + " · " + sd(rec.date) + " · " + money(rec.total),
     text: coupleNames(rec) + "\n" + sd(rec.date) + " · " + rec.tierName + " · " + money(rec.total) + "\nDate held until " + new Date(rec.holdUntil).toLocaleString("en-US", { timeZone: "America/Los_Angeles" }) + "\n\n" + rec.link });
   return json({ ok: true, id: rec.id, url: rec.link, proposal: pr });
 }

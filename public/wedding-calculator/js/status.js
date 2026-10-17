@@ -50,7 +50,7 @@
   function load() {
     if (PREVIEW) {
       $("previewNote").hidden = false;
-      $("previewNote").textContent = "Preview: showing proposals created in Consult Mode on this device. Once live, this shows every proposal for both of you.";
+      $("previewNote").textContent = "Preview: showing contracts created in Consult Mode on this device. Once live, this shows every contract for both of you.";
       rows = (LS.get("afuvai_demo_proposals") || []).map(view); render(); return;
     }
     var key = LS.get("afuvai_admin_key") || window.prompt("Admin key");
@@ -59,7 +59,7 @@
       if (r.status === 401) { LS.set("afuvai_admin_key", null); throw new Error("That admin key did not work. Reload to try again."); }
       return r.json();
     }).then(function (j) { LS.set("afuvai_admin_key", key); rows = (j.proposals || []).map(view); render(); })
-      .catch(function (e) { $("list").textContent = e.message || "Could not load proposals."; });
+      .catch(function (e) { $("list").textContent = e.message || "Could not load contracts."; });
   }
 
   function render() {
@@ -85,7 +85,7 @@
       if (filter === "closed") { return r.status === "expired" || r.status === "cancelled"; }
       return true;
     }).sort(function (a, b) { return (a.open === b.open) ? (a.x.date < b.x.date ? -1 : 1) : (a.open ? -1 : 1); });
-    if (!shown.length) { list.appendChild(h("p", { class: "hint", text: rows.length ? "Nothing here." : "No proposals yet. Create one in Consult Mode." })); }
+    if (!shown.length) { list.appendChild(h("p", { class: "hint", text: rows.length ? "Nothing here." : "No contracts yet. Create one in Consult Mode." })); }
     shown.forEach(function (r) { list.appendChild(card(r)); });
     $("foot").textContent = "Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) + ".";
   }
@@ -101,7 +101,7 @@
     if (r.next) { facts.push(["Next", money(r.next.amt) + " on " + sd(r.next.due)]); }
     if (x.signature) { facts.push(["Signed", x.signature.name]); }
     var acts = h("div", { class: "sacts" });
-    if (x.link || x.id) { acts.appendChild(h("a", { class: "linkbtn", href: x.link || ("proposal.html?id=" + x.id), target: "_blank", rel: "noopener", text: "Open proposal" })); }
+    if (x.link || x.id) { acts.appendChild(h("a", { class: "linkbtn", href: x.link || ("proposal.html?id=" + x.id), target: "_blank", rel: "noopener", text: "Open contract" })); }
     if (r.open) {
       var note = holdNote(x);
       acts.appendChild(h("a", { class: "linkbtn", href: "sms:" + (c.phone || "") + "?&body=" + encodeURIComponent(note), text: "Text Ami's note" }));
