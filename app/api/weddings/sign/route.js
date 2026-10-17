@@ -8,6 +8,7 @@ export async function POST(req) {
   if (!rec) { return bad("Not found", 404); }
   const st = liveStatus(rec);
   if (st === "expired") { return bad("Your date hold has ended. Contact " + cfg.business.designer + " to check your date.", 409); }
+  if (st === "cancelled") { return bad("This contract was cancelled. Contact " + cfg.business.designer + ".", 409); }
   if (st !== "sent" && st !== "signed") { return bad("This contract is already booked.", 409); }
   const sig = cleanSig(body.signature, req);
   if (!sig) { return bad("Type your full name to sign."); }

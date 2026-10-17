@@ -86,7 +86,8 @@
     app.appendChild(pricing());
     if (!booked) {
       var expired = holdExpired();
-      if (expired) { app.appendChild(expiredBox()); }
+      if (live.status === "cancelled") { app.appendChild(cancelledBox()); }
+      else if (expired) { app.appendChild(expiredBox()); }
       else { app.appendChild(plans()); app.appendChild(agreement()); app.appendChild(reserve()); }
     }
     tick();
@@ -102,7 +103,7 @@
       h("h1", null, ["A contract for ", h("em", { text: names() || "you" })]),
       h("p", { class: "pmeta", text: meta.join(" · ") }),
       booked ? h("p", { class: "phold ok" }, [h("b", { text: "Your date is reserved." })])
-        : holdExpired() ? null
+        : (live.status === "cancelled" || holdExpired()) ? null
         : h("p", { class: "phold" }, [h("b", { text: "Your date is held for you" }), " until " + whenTime(hold) + ". ", h("span", { id: "countdown", class: "num" })])
     ]);
   }
@@ -302,6 +303,16 @@
       s.length ? h("div", null, [h("p", { class: "eyebrow", text: "Your payments" }), ol]) : null,
       live.plan === "full" && P.fullPerk ? h("p", { class: "hint gold", text: P.fullPerk.name + " are reserved for your first anniversary." }) : null,
       h("dl", { class: "pkeys" }, keys.map(function (k) { return h("div", null, [h("dt", { text: k[0] }), h("dd", { text: k[1] })]); }))
+    ]);
+  }
+  function cancelledBox() {
+    var mail = "mailto:" + cfg.business.email + "?subject=" + encodeURIComponent("About my contract (" + pr.ref + ")");
+    return h("section", { class: "psec preserve" }, [
+      h("p", { class: "eyebrow", text: "Contract cancelled" }),
+      h("h2", { text: "This contract is no longer active." }),
+      h("p", { text: "If this is unexpected, reach " + cfg.business.designer + " and she will sort it out with you." }),
+      h("a", { class: "btn gold", href: mail, text: "Email " + cfg.business.designer }),
+      h("a", { class: "btn ghost", href: "tel:" + cfg.business.phone.replace(/[^\d+]/g, ""), text: "Call " + cfg.business.phone })
     ]);
   }
   function expiredBox() {

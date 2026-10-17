@@ -447,7 +447,7 @@
   E.makeProposal = function (cfg, state, o) {
     var t = state.tier, r = E.calc(cfg, state, t), now = o.now ? new Date(o.now) : new Date();
     var adj = Math.round(+((o.adj && o.adj.amt) || 0));
-    var adjTax = adj ? Math.round(adj * cfg.pricing.taxRate) : 0;
+    var adjTax = adj ? Math.max(-r.tax, Math.round(adj * cfg.pricing.taxRate)) : 0; /* a discount can remove the tax, never make it negative */
     var total = r.total + adj + adjTax;
     var perk = E.perkCredit(cfg, state, t);
     var venue = E.venue(cfg, state);
