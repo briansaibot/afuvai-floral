@@ -377,7 +377,7 @@
 
     faq: [
       { q: "Is this a quote?", a: "It is a planning range built from our real recipes and Las Vegas wholesale costs. Your exact price comes in your custom contract after your consultation." },
-      { q: "What happens after I send it?", a: "AmiDayne reviews your selections and builds a design board for you. At your consultation, by video or in person, you see your design, adjust anything, and leave with your proposal. If you love it, you can reserve your date right there." },
+      { q: "What happens after I send it?", a: "AmiDayne reviews your selections and builds a design board for you. At your consultation, by video or in person, you see your design, adjust anything, and leave with your contract. If you love it, you can reserve your date right there." },
       { q: "How do payments work?", a: "A 30% retainer reserves your date. Then choose what suits you: a 30% design payment 90 days before and the balance 30 days before, monthly payments, or pay in full and receive your first-anniversary flowers as our gift. Everything is paid 30 days before your wedding. Nothing is charged through this page." },
       { q: "Do we have to decide at the consultation?", a: "No. If you are ready, you can sign and reserve on the spot. If you want to think it over, we hold your date for 72 hours while you decide." },
       { q: "What if my flowers are out of season?", a: "We design with blooms of equal or greater value that keep your look, and we tell you before your contract, never on the day." },

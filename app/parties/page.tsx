@@ -128,7 +128,7 @@ export default function PartiesPage() {
             Ready to host something beautiful?
           </h2>
           <p style={{ color: "rgba(250,248,243,0.7)", fontSize: "0.97rem", marginBottom: "2.5rem" }}>
-            Tell us about your event and we'll send a custom proposal within 48 hours.
+            Tell us about your event and we'll send a custom contract within 48 hours.
           </p>
           <a
             href="mailto:hello@afuvai.com?subject=Floral%20Party%20Booking"

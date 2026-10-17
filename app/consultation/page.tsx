@@ -52,7 +52,7 @@ export default function ConsultationPage() {
               { step: '1', title: 'Book Your Slot', desc: 'Select your preferred date and time' },
               { step: '2', title: 'Confirmation', desc: 'Email confirmation with Zoom or Vegas location details' },
               { step: '3', title: 'Consultation Call', desc: 'Discuss your vision, budget, and timeline' },
-              { step: '4', title: 'Next Steps', desc: 'Receive a proposal and project timeline' },
+              { step: '4', title: 'Next Steps', desc: 'Receive your contract and project timeline' },
             ].map((item, idx) => (
               <div key={item.step} className="text-center">
                 <div

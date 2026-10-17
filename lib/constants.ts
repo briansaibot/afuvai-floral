@@ -292,7 +292,7 @@ export const FAQS_SUB: FaqItem[] = [
 export const FAQS_WEDDINGS: FaqItem[] = [
   { q: "How far in advance should we book?",   a: "We recommend booking 6–12 months out for weddings, especially for peak season (October–May). Shorter timelines are accommodated when availability allows." },
   { q: "Do you travel to the venue?",          a: "Yes — we travel to any venue in the Las Vegas Valley and greater Nevada area. Travel fees apply beyond 30 miles from central Las Vegas." },
-  { q: "What is included in a consultation?",  a: "Your complimentary consultation includes a vision discussion, venue review, color palette planning, and a custom proposal delivered within 5 business days." },
+  { q: "What is included in a consultation?",  a: "Your complimentary consultation includes a vision discussion, venue review, color palette planning, and a custom contract delivered within 5 business days." },
   { q: "Can we see samples before booking?",   a: "Yes. For full-service clients, we offer a paid sample session where we create mini versions of your planned arrangements for your approval." },
   { q: "What is your minimum for weddings?",   a: "Our wedding minimum is $1,500. Most full-service weddings range from $3,000–$15,000+ depending on scope, guest count, and design complexity." },
   { q: "Are you available for destination events?", a: "Yes. We've designed weddings and events throughout Nevada and can coordinate with venues outside Las Vegas. Travel arrangements and fees are discussed during consultation." },

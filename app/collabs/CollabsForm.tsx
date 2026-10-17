@@ -10,7 +10,7 @@ export default function CollabsForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Pitch received! We'll be in touch within 48 hours with a proposal.");
+    toast.success("Pitch received! We'll be in touch within 48 hours with a contract.");
     setForm({ name: "", business: "", email: "", phone: "", type: "", space: "", notes: "" });
   };
 
@@ -20,7 +20,7 @@ export default function CollabsForm() {
         <div className="text-center mb-10">
           <SectionHead label="Start a Conversation" heading="Pitch a collaboration." center />
           <p style={{ color: MUTED, fontSize: "0.96rem", marginTop: "0.5rem" }}>
-            Tell us about your space and we&apos;ll send a proposal within 48 hours. No commitment required.
+            Tell us about your space and we&apos;ll send a contract within 48 hours. No commitment required.
           </p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
